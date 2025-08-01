@@ -1,13 +1,15 @@
 using Rigidboby;
 using System;
 using UnityEngine;
+using Datas;
 
 namespace Player
 {
     public class PlayerMover : MonoBehaviour
     {
-        [SerializeField] AddForceToMaxSpeed mover = new();
-        [SerializeField] AddForce jumper = new();
+        [SerializeField] PlayerMoveData moveData;
+        AddForceToMaxSpeed mover;
+        AddForce jumper;
         bool isPointerDown = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,8 +17,10 @@ namespace Player
         {
             Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
             if (rigidbody == null) throw new NullReferenceException(gameObject.name);
-            mover.Initialize(rigidbody);
-            jumper.Initialize(rigidbody);
+            if (moveData == null) throw new NullReferenceException(gameObject.name);
+
+            mover = new AddForceToMaxSpeed(moveData.moveForce, moveData.moveMaxSpeed, rigidbody);
+            jumper = new AddForce(moveData.jumpForce, rigidbody);
         }
 
         void Moving()
@@ -56,13 +60,14 @@ namespace Rigidboby
     [Serializable]
     public class AddForceToMaxSpeed
     {
-        [SerializeField] float force;
-        [SerializeField] float maxSpeed;
+        readonly float force;
+        readonly float maxSpeed;
+        readonly Rigidbody2D rigidbody;
 
-        Rigidbody2D rigidbody;
-
-        public void Initialize(Rigidbody2D rigidbody)
+        public AddForceToMaxSpeed(float force, float maxSpeed, Rigidbody2D rigidbody)
         {
+            this.force = force;
+            this.maxSpeed = maxSpeed;
             this.rigidbody = rigidbody;
         }
 
@@ -77,13 +82,13 @@ namespace Rigidboby
     [Serializable]
     public class AddForce
     {
-        [SerializeField] float force;
+        readonly float force;
+        readonly Rigidbody2D rigidbody;
 
-        Rigidbody2D rigidbody;
-
-        public void Initialize(Rigidbody2D rigidbody)
+        public AddForce(float force, Rigidbody2D rigidbody)
         {
-            this .rigidbody = rigidbody;
+            this.force = force;
+            this.rigidbody = rigidbody;
         }
 
         public void Addforce(Vector2 direction)
