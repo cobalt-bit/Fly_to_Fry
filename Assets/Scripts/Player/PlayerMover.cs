@@ -1,7 +1,8 @@
-using Rigidboby;
+using Bitools;
+using Datas;
+using Rigidbody;
 using System;
 using UnityEngine;
-using Datas;
 
 namespace Player
 {
@@ -10,7 +11,8 @@ namespace Player
         [SerializeField] PlayerMoveData moveData;
         AddForceToMaxSpeed mover;
         AddForce jumper;
-        bool isPointerDown = false;
+        //BoolDictionary canMove = new BoolDictionary();
+        bool isPionterDown = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -23,11 +25,17 @@ namespace Player
             jumper = new AddForce(moveData.jumpForce, rigidbody);
         }
 
-        void Moving()
+        void Move()
         {
-            if (!isPointerDown) return;
-            Debug.Log("Moving");
+            if (!isPionterDown) return;
+            Debug.Log("Move");
             //mover.AddForce(Vector2.right);
+        }
+
+        void Jump()
+        {
+            Debug.Log("Jump");
+            //jumper.Addforce(Vector2.up);
         }
 
         // Update is called once per frame
@@ -38,24 +46,25 @@ namespace Player
 
         private void FixedUpdate()
         {
-            Moving();
+            Move();
         }
 
-        public void Move()
+        public void MovebyPointer()
         {
-            isPointerDown = true;
+            //canMove.Set("isPointerDown", true);
+            isPionterDown = true;
         }
 
-        public void Jump()
+        public void JumpbyPointer()
         {
-            Debug.Log("Jump");
-            isPointerDown = false;
-            //jumper.Addforce(Vector2.up);
+            //canMove.Set("isPointerDown", false);
+            isPionterDown = false;
+            Jump();
         }
     }
 }
 
-namespace Rigidboby
+namespace Rigidbody
 {
     [Serializable]
     public class AddForceToMaxSpeed
@@ -93,7 +102,7 @@ namespace Rigidboby
 
         public void Addforce(Vector2 direction)
         {
-            rigidbody.AddForce(force * direction);
+            rigidbody.AddForce(force * direction, ForceMode2D.Impulse);
         }
     }
 }
