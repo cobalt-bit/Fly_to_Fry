@@ -3,16 +3,31 @@ using Datas;
 using Rigidbody;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] PlayerMoveData moveData;
+        [SerializeField] PlayerInput input;
         AddForceToMaxSpeed mover;
         AddForce jumper;
         //BoolDictionary canMove = new BoolDictionary();
         bool isPionterDown = false;
+        bool isInputbuttonDown = false;
+
+        private void OnEnable()
+        {
+            input.actions["Move"].started += MovebyInputAction;
+            input.actions["Move"].canceled += JumpbyInputAction;
+        }
+
+        private void OnDisable()
+        {
+            input.actions["Move"].started -= MovebyInputAction;
+            input.actions["Move"].canceled -= JumpbyInputAction;
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -27,7 +42,7 @@ namespace Player
 
         void Move()
         {
-            if (!isPionterDown) return;
+            if (!isPionterDown && !isInputbuttonDown) return;
             Debug.Log("Move");
             //mover.AddForce(Vector2.right);
         }
@@ -59,6 +74,16 @@ namespace Player
         {
             //canMove.Set("isPointerDown", false);
             isPionterDown = false;
+            Jump();
+        }
+
+        private void MovebyInputAction(InputAction.CallbackContext context)
+        {
+            isInputbuttonDown = true;
+        }
+        private void JumpbyInputAction(InputAction.CallbackContext context)
+        {
+            isInputbuttonDown = false;
             Jump();
         }
     }
