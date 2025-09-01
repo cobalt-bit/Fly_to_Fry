@@ -6,6 +6,7 @@ namespace ScriptableDatas
     [CreateAssetMenu(fileName = "PlayerMoveData", menuName = "Scriptable Objects/PlayerMoveData")]
     public class PlayerMoveData : ScriptableObject
     {
+        public Sprite foodTexture;
         [Serializable] public struct MoveStruct { public float force, maxSpeed; }
         public MoveStruct move;
         [Serializable] public struct JumpStruct

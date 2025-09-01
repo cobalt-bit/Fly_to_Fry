@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee22fa520669b4e4c97fd6e15df4cc7b, type: 3}
   m_Name: PlayerMoveDatas
   m_EditorClassIdentifier: 
+  foodTexture: {fileID: 21300000, guid: 6507acc4167c1294f9e9e586c64cb096, type: 3}
   move:
     force: 0
     maxSpeed: 0
