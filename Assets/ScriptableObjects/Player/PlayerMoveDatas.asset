@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee22fa520669b4e4c97fd6e15df4cc7b, type: 3}
   m_Name: PlayerMoveDatas
   m_EditorClassIdentifier: 
-  moveForce: 0
-  moveMaxSpeed: 0
-  jumpForce: 0
+  move:
+    force: 0
+    maxSpeed: 0
+  jump:
+    timeToVertex: 0.5
+    height: 5
+    timeToSus: 0
+  mass: 1

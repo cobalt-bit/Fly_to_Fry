@@ -1,12 +1,18 @@
+using System;
 using UnityEngine;
 
-namespace Datas
+namespace ScriptableDatas
 {
     [CreateAssetMenu(fileName = "PlayerMoveData", menuName = "Scriptable Objects/PlayerMoveData")]
     public class PlayerMoveData : ScriptableObject
     {
-        public float moveForce;
-        public float moveMaxSpeed;
-        public float jumpForce;
+        [Serializable] public struct MoveStruct { public float force, maxSpeed; }
+        public MoveStruct move;
+        [Serializable] public struct JumpStruct
+        {
+            public float timeToVertex, height, timeToSus;
+        }
+        public JumpStruct jump;
+        public float mass;
     }
 }

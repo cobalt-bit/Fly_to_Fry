@@ -1,21 +1,28 @@
-using Bitools;
-using Datas;
+using ScriptableDatas;
 using Rigidbody;
+using System.Threading;
+using System.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cysharp.Threading.Tasks;
 
 namespace Player
 {
     public class PlayerMover : MonoBehaviour
     {
+        [SerializeField] float baseY;
         [SerializeField] PlayerMoveData moveData;
         [SerializeField] PlayerInput input;
-        AddForceToMaxSpeed mover;
-        AddForce jumper;
+        [SerializeField] IsLandingManeger landingManeger;
+        AddForce mover;
+        JumpAnimator jumper;
+        GrideAnimation grider;
         //BoolDictionary canMove = new BoolDictionary();
         bool isPionterDown = false;
         bool isInputbuttonDown = false;
+
+        string GUIstr = "";
 
         private void OnEnable()
         {
@@ -25,6 +32,7 @@ namespace Player
 
         private void OnDisable()
         {
+            if (input == null) return;
             input.actions["Move"].started -= MovebyInputAction;
             input.actions["Move"].canceled -= JumpbyInputAction;
         }
@@ -33,24 +41,29 @@ namespace Player
         void Start()
         {
             Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-            if (rigidbody == null) throw new NullReferenceException(gameObject.name);
-            if (moveData == null) throw new NullReferenceException(gameObject.name);
+            if (rigidbody == null) throw new System.NullReferenceException(gameObject.name + "Rigidbody");
+            if (moveData == null) throw new System.NullReferenceException(gameObject.name + "MoveData");
+            if (landingManeger == null) throw new System.NullReferenceException(gameObject.name + "IsLandingManeger");
 
-            mover = new AddForceToMaxSpeed(moveData.moveForce, moveData.moveMaxSpeed, rigidbody);
-            jumper = new AddForce(moveData.jumpForce, rigidbody);
+            mover = new AddForce(moveData.move.force, rigidbody);
+            jumper = new JumpAnimator(moveData.jump, transform, rigidbody, baseY);
+
+            rigidbody.mass = moveData.mass;
         }
 
         void Move()
         {
+            GUIstr = "";
             if (!isPionterDown && !isInputbuttonDown) return;
-            Debug.Log("Move");
-            //mover.AddForce(Vector2.right);
+            GUIstr = "Move";
+            //mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
         }
 
         void Jump()
         {
-            Debug.Log("Jump");
-            //jumper.Addforce(Vector2.up);
+            if (!landingManeger.isLanding) return;
+            jumper.CallJump();
+            GUIstr = "Jump";
         }
 
         // Update is called once per frame
@@ -86,33 +99,82 @@ namespace Player
             isInputbuttonDown = false;
             Jump();
         }
+
+        private void OnGUI()
+        {
+            GUILayout.Label("Player Move Event:" + GUIstr);
+        }
+    }
+
+    [System.Serializable]
+    public class JumpAnimator
+    {
+        private readonly float basePositionY, timeToVertex, height, timeToSus;
+        private float distance, fromPosition;
+        private readonly Transform targetTransform;
+        private readonly Rigidbody2D rigidbody;
+        public bool isJumping = false;
+
+        public JumpAnimator(PlayerMoveData.JumpStruct moveData, Transform targetTransform, Rigidbody2D rigidbody, float basePositionY)
+        {
+            this.timeToVertex = moveData.timeToVertex;
+            this.height = moveData.height;
+            this.timeToSus = moveData.timeToSus;
+            if (timeToVertex < 0) Debug.LogError("Please set jumpUpTime to 0 or higher.");
+            this.targetTransform = targetTransform;
+            this.rigidbody = rigidbody;
+            this.basePositionY = basePositionY;
+        }
+
+        // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½Žž‚Éˆê‰ñ‚¸‚ÂŒÄ‚Ño‚·
+        public async void CallJump()
+        {
+            if (isJumping) return;
+            isJumping = true;
+            fromPosition = targetTransform.position.y;
+            distance = basePositionY - targetTransform.position.y + height;
+            await Jump();
+            await Sustain();
+            isJumping = false;
+        }
+
+        private async UniTask Jump()
+        {
+            rigidbody.linearVelocityY = MathF.Max(0, rigidbody.linearVelocityY);
+            float a = -distance / timeToVertex / timeToVertex;
+            for (float timer = 0; timer < timeToVertex; timer += Time.deltaTime)
+            {
+                await UniTask.NextFrame();
+                float x = timer - timeToVertex;
+                float moveDistance = a * x * x + distance;
+                rigidbody.MovePosition(new Vector2(rigidbody.position.x, moveDistance + fromPosition));
+            }
+            targetTransform.position = new Vector2(targetTransform.position.x, basePositionY + height);
+        }
+
+        private async UniTask Sustain()
+        {
+            for (float timer = 0; timer < timeToSus; timer += Time.deltaTime)
+            {
+                Vector2 position = new Vector2(rigidbody.position.x, basePositionY + height);
+                rigidbody.MovePosition(position);
+                rigidbody.linearVelocityY = 0;
+                await UniTask.NextFrame();
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class GrideAnimation
+    {
+        private readonly float maxAirTime;
+        private readonly float gravityScale;
+        private readonly float grideSpeed;
     }
 }
 
 namespace Rigidbody
 {
-    [Serializable]
-    public class AddForceToMaxSpeed
-    {
-        readonly float force;
-        readonly float maxSpeed;
-        readonly Rigidbody2D rigidbody;
-
-        public AddForceToMaxSpeed(float force, float maxSpeed, Rigidbody2D rigidbody)
-        {
-            this.force = force;
-            this.maxSpeed = maxSpeed;
-            this.rigidbody = rigidbody;
-        }
-
-        public void AddForce(Vector2 direction)
-        {
-            if (rigidbody == null) return;
-            if (rigidbody.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed) return;
-            rigidbody.AddForce(force * Time.deltaTime * direction);
-        }
-    }
-
     [Serializable]
     public class AddForce
     {
@@ -125,9 +187,16 @@ namespace Rigidbody
             this.rigidbody = rigidbody;
         }
 
-        public void Addforce(Vector2 direction)
+        public void AddImpulseForce(Vector2 direction)
         {
             rigidbody.AddForce(force * direction, ForceMode2D.Impulse);
+        }
+
+        public void AddForceToMaxSpeed(Vector2 direction, float maxSpeed)
+        {
+            if (rigidbody == null) return;
+            if (rigidbody.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed) return;
+            rigidbody.AddForce(force * Time.deltaTime * direction);
         }
     }
 }
