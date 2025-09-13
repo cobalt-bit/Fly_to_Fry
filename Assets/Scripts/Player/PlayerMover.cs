@@ -1,11 +1,9 @@
-using ScriptableDatas;
+using Cysharp.Threading.Tasks;
 using Rigidbody;
-using System.Threading;
-using System.Threading.Tasks;
+using ScriptableDatas;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cysharp.Threading.Tasks;
 
 namespace Player
 {
@@ -53,10 +51,10 @@ namespace Player
 
         void Move()
         {
-            GUIstr = "";
             if (!isPionterDown && !isInputbuttonDown) return;
+            if (!landingManeger.isLanding) return;
             GUIstr = "Move";
-            //mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
+            mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
         }
 
         void Jump()
@@ -74,6 +72,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            GUIstr = "";
             Move();
         }
 
@@ -147,7 +146,8 @@ namespace Player
                 await UniTask.NextFrame();
                 float x = timer - timeToVertex;
                 float moveDistance = a * x * x + distance;
-                rigidbody.MovePosition(new Vector2(rigidbody.position.x, moveDistance + fromPosition));
+                //rigidbody.MovePosition(new Vector2(rigidbody.position.x + rigidbody.linearVelocityX * Time.deltaTime, moveDistance + fromPosition));
+                rigidbody.linearVelocityY = 2 * a * x;
             }
             targetTransform.position = new Vector2(targetTransform.position.x, basePositionY + height);
         }
@@ -196,7 +196,7 @@ namespace Rigidbody
         {
             if (rigidbody == null) return;
             if (rigidbody.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed) return;
-            rigidbody.AddForce(force * Time.deltaTime * direction);
+            rigidbody.AddForce(force * direction);
         }
     }
 }

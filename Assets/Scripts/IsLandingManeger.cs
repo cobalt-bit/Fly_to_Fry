@@ -18,14 +18,13 @@ public class IsLandingManeger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.name != "Oil") return;
+        if (!collision.gameObject.CompareTag("Oil")) return;
         isLanding = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name != "Oil") return;
+        if (!collision.gameObject.CompareTag("Oil")) return;
         isLanding = false;
     }
 }
