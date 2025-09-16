@@ -539,6 +539,7 @@ MonoBehaviour:
   moveData: {fileID: 11400000, guid: 16fac4beb6e3d3a4fbe24bf045bbf626, type: 2}
   input: {fileID: 1498036921}
   landingManeger: {fileID: 821789398}
+  debug_canMoveX: 1
 --- !u!114 &821789398
 MonoBehaviour:
   m_ObjectHideFlags: 0

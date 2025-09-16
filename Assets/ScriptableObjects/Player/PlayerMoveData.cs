@@ -11,7 +11,7 @@ namespace ScriptableDatas
         public MoveStruct move;
         [Serializable] public struct JumpStruct
         {
-            public float timeToVertex, height, timeToSus;
+            public float timeToVertex, height, timeToSus, grideDownSpeed;
         }
         public JumpStruct jump;
         public float mass;

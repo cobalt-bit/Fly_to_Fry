@@ -13,6 +13,7 @@ namespace Player
         [SerializeField] PlayerMoveData moveData;
         [SerializeField] PlayerInput input;
         [SerializeField] IsLandingManeger landingManeger;
+        [SerializeField] bool debug_canMoveX = true;
         AddForce mover;
         JumpAnimator jumper;
         GrideAnimation grider;
@@ -54,6 +55,7 @@ namespace Player
             if (!isPionterDown && !isInputbuttonDown) return;
             if (!landingManeger.isLanding) return;
             GUIstr = "Move";
+            if (!debug_canMoveX) return;
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
         }
 
@@ -108,7 +110,7 @@ namespace Player
     [System.Serializable]
     public class JumpAnimator
     {
-        private readonly float basePositionY, timeToVertex, height, timeToSus;
+        private readonly float basePositionY, timeToVertex, height, timeToSus, grideDownSpeed;
         private float distance, fromPosition;
         private readonly Transform targetTransform;
         private readonly Rigidbody2D rigidbody;
@@ -119,6 +121,7 @@ namespace Player
             this.timeToVertex = moveData.timeToVertex;
             this.height = moveData.height;
             this.timeToSus = moveData.timeToSus;
+            this.grideDownSpeed = moveData.grideDownSpeed;
             if (timeToVertex < 0) Debug.LogError("Please set jumpUpTime to 0 or higher.");
             this.targetTransform = targetTransform;
             this.rigidbody = rigidbody;
@@ -132,8 +135,11 @@ namespace Player
             isJumping = true;
             fromPosition = targetTransform.position.y;
             distance = basePositionY - targetTransform.position.y + height;
+            float originalGravity = rigidbody.gravityScale;
+            rigidbody.gravityScale = 0;
             await Jump();
             await Sustain();
+            rigidbody.gravityScale = originalGravity;
             isJumping = false;
         }
 
@@ -143,22 +149,18 @@ namespace Player
             float a = -distance / timeToVertex / timeToVertex;
             for (float timer = 0; timer < timeToVertex; timer += Time.deltaTime)
             {
-                await UniTask.NextFrame();
                 float x = timer - timeToVertex;
                 float moveDistance = a * x * x + distance;
-                //rigidbody.MovePosition(new Vector2(rigidbody.position.x + rigidbody.linearVelocityX * Time.deltaTime, moveDistance + fromPosition));
                 rigidbody.linearVelocityY = 2 * a * x;
+                await UniTask.NextFrame();
             }
-            targetTransform.position = new Vector2(targetTransform.position.x, basePositionY + height);
         }
 
         private async UniTask Sustain()
         {
             for (float timer = 0; timer < timeToSus; timer += Time.deltaTime)
             {
-                Vector2 position = new Vector2(rigidbody.position.x, basePositionY + height);
-                rigidbody.MovePosition(position);
-                rigidbody.linearVelocityY = 0;
+                rigidbody.linearVelocityY = -grideDownSpeed;
                 await UniTask.NextFrame();
             }
         }

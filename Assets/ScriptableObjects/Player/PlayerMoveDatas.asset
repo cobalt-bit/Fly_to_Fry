@@ -19,5 +19,6 @@ MonoBehaviour:
   jump:
     timeToVertex: 0.5
     height: 5
-    timeToSus: 0
+    timeToSus: 1
+    grideDownSpeed: 0.8
   mass: 1
