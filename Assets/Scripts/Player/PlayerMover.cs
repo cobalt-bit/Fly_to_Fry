@@ -57,6 +57,7 @@ namespace Player
             GUIstr = "Move";
             if (!debug_canMoveX) return;
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
+            //mover.AddSpeed(Vector2.right);
         }
 
         void Jump()
@@ -185,6 +186,7 @@ namespace Rigidbody
 
         public AddForce(float force, Rigidbody2D rigidbody)
         {
+            if (rigidbody == null) throw new System.NullReferenceException();
             this.force = force;
             this.rigidbody = rigidbody;
         }
@@ -196,9 +198,13 @@ namespace Rigidbody
 
         public void AddForceToMaxSpeed(Vector2 direction, float maxSpeed)
         {
-            if (rigidbody == null) return;
             if (rigidbody.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed) return;
             rigidbody.AddForce(force * direction);
+        }
+
+        public void AddSpeed(Vector2 direction)
+        {
+            rigidbody.linearVelocity += force * Time.fixedDeltaTime * direction;
         }
     }
 }

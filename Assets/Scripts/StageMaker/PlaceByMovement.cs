@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaceByMovement : MonoBehaviour
@@ -5,28 +6,56 @@ public class PlaceByMovement : MonoBehaviour
     [SerializeField] Transform target;
     public GameObject placedObject;
     [Min(0)] public float interval;
-    [SerializeField] float offset;
+    [SerializeField] float aheadOffset;
+    [SerializeField] float behindOffset;
     [SerializeField] float positionY;
 
     private float previosPlacePositionX = 0;
+    List<GameObject> useObjects = new List<GameObject>();
+    //Queue<GameObject> unuseObjects = new Queue<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        previosPlacePositionX -= offset;
+        previosPlacePositionX -= aheadOffset;
+    }
+
+    void place()
+    {
+        float moveDistance = target.position.x - previosPlacePositionX;
+        while (moveDistance >= interval)
+        {
+            GameObject currentPlacedObject;
+            //if (!unuseObjects.TryDequeue(out currentPlacedObject))
+            //{
+            //    currentPlacedObject = Instantiate(placedObject);
+            //    useObjects.Add(currentPlacedObject);
+            //}
+            currentPlacedObject = Instantiate(placedObject);
+            useObjects.Add(currentPlacedObject);
+
+            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset, positionY);
+            Debug.Log("Oil Place:" + currentPlacedObject.transform.position);
+            previosPlacePositionX += interval;
+            moveDistance -= interval;
+        }
+    }
+
+    void Replace()
+    {
+        for (int i = 0; i < useObjects.Count; i++)
+        {
+            if (target.position.x - useObjects[i].transform.position.x < behindOffset) continue;
+            Destroy(useObjects[i]);
+            //unuseObjects.Enqueue(useObjects[i]);
+            useObjects.RemoveAt(i);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        float moveDistance = target.position.x - previosPlacePositionX;
-        while (moveDistance >= interval)
-        {
-            GameObject currentPlacedObject = Instantiate(placedObject);
-            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + offset, positionY);
-            Debug.Log("Oil Place:" + currentPlacedObject.transform.position);
-            previosPlacePositionX += interval;
-            moveDistance -= interval;
-        }
+        place();
+        Replace();
     }
 }
