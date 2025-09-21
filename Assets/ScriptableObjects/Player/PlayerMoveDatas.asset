@@ -21,4 +21,7 @@ MonoBehaviour:
     height: 5
     timeToSus: 1
     grideDownSpeed: 0.8
+  startMove:
+    maxSpeed: 2
+    force: 0.5
   mass: 1

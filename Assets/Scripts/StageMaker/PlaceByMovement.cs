@@ -35,7 +35,6 @@ public class PlaceByMovement : MonoBehaviour
             useObjects.Add(currentPlacedObject);
 
             currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset, positionY);
-            Debug.Log("Oil Place:" + currentPlacedObject.transform.position);
             previosPlacePositionX += interval;
             moveDistance -= interval;
         }

@@ -16,7 +16,6 @@ namespace Player
         [SerializeField] bool debug_canMoveX = true;
         AddForce mover;
         JumpAnimator jumper;
-        GrideAnimation grider;
         //BoolDictionary canMove = new BoolDictionary();
         bool isPionterDown = false;
         bool isInputbuttonDown = false;
@@ -52,8 +51,9 @@ namespace Player
 
         void Move()
         {
-            if (!isPionterDown && !isInputbuttonDown) return;
             if (!landingManeger.isLanding) return;
+            mover.AddForceToMaxSpeed(moveData.startMove.force * Vector2.right, moveData.startMove.maxSpeed);
+            if (!isPionterDown && !isInputbuttonDown) return;
             GUIstr = "Move";
             if (!debug_canMoveX) return;
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
@@ -139,6 +139,7 @@ namespace Player
             float originalGravity = rigidbody.gravityScale;
             rigidbody.gravityScale = 0;
             await Jump();
+
             await Sustain();
             rigidbody.gravityScale = originalGravity;
             isJumping = false;
@@ -146,7 +147,7 @@ namespace Player
 
         private async UniTask Jump()
         {
-            rigidbody.linearVelocityY = MathF.Max(0, rigidbody.linearVelocityY);
+            //rigidbody.linearVelocityY = MathF.Sqrt(2 * distance * rigidbody.gravityScale);
             float a = -distance / timeToVertex / timeToVertex;
             for (float timer = 0; timer < timeToVertex; timer += Time.deltaTime)
             {
@@ -154,7 +155,9 @@ namespace Player
                 float moveDistance = a * x * x + distance;
                 rigidbody.linearVelocityY = 2 * a * x;
                 await UniTask.NextFrame();
+                //rigidbody.position = new Vector2(rigidbody.position.x, moveDistance + fromPosition);
             }
+            //rigidbody.position = new Vector2(rigidbody.position.x, basePositionY + height);
         }
 
         private async UniTask Sustain()
@@ -165,14 +168,6 @@ namespace Player
                 await UniTask.NextFrame();
             }
         }
-    }
-
-    [System.Serializable]
-    public class GrideAnimation
-    {
-        private readonly float maxAirTime;
-        private readonly float gravityScale;
-        private readonly float grideSpeed;
     }
 }
 

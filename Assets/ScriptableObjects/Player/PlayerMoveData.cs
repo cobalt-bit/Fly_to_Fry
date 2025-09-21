@@ -9,11 +9,10 @@ namespace ScriptableDatas
         public Sprite foodTexture;
         [Serializable] public struct MoveStruct { public float force, maxSpeed; }
         public MoveStruct move;
-        [Serializable] public struct JumpStruct
-        {
-            public float timeToVertex, height, timeToSus, grideDownSpeed;
-        }
+        [Serializable] public struct JumpStruct { public float timeToVertex, height, timeToSus, grideDownSpeed; }
         public JumpStruct jump;
+        [Serializable] public struct StartMoveStruct { public float maxSpeed, force; }
+        public StartMoveStruct startMove;
         public float mass;
     }
 }
