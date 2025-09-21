@@ -9,6 +9,7 @@ public class PlaceByMovement : MonoBehaviour
     [SerializeField] float aheadOffset;
     [SerializeField] float behindOffset;
     [SerializeField] float positionY;
+    [SerializeField] float offsetX;
 
     private float previosPlacePositionX = 0;
     List<GameObject> useObjects = new List<GameObject>();
@@ -34,7 +35,7 @@ public class PlaceByMovement : MonoBehaviour
             currentPlacedObject = Instantiate(placedObject);
             useObjects.Add(currentPlacedObject);
 
-            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset, positionY);
+            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset + offsetX, positionY);
             previosPlacePositionX += interval;
             moveDistance -= interval;
         }

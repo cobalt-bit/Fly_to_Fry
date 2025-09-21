@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35f2fe5240b42e41864ac41df256375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampingX: 0.2
+  dampingX: 0.1
   dampingY: 6
 --- !u!1 &7992957006643713095
 GameObject:
