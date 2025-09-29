@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] PlayerInput input;
         [SerializeField] IsLandingManeger landingManeger;
         [SerializeField] bool debug_canMoveX = true;
+        new Rigidbody2D rigidbody;
         AddForce mover;
         JumpAnimator jumper;
         //BoolDictionary canMove = new BoolDictionary();
@@ -38,7 +39,7 @@ namespace Player
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody = GetComponent<Rigidbody2D>();
             if (rigidbody == null) throw new System.NullReferenceException(gameObject.name + "Rigidbody");
             if (moveData == null) throw new System.NullReferenceException(gameObject.name + "MoveData");
             if (landingManeger == null) throw new System.NullReferenceException(gameObject.name + "IsLandingManeger");
@@ -53,7 +54,12 @@ namespace Player
         {
             if (!landingManeger.isLanding) return;
             mover.AddForceToMaxSpeed(moveData.startMove.force * Vector2.right, moveData.startMove.maxSpeed);
-            if (!isPionterDown && !isInputbuttonDown) return;
+            if (!isPionterDown && !isInputbuttonDown)
+            {
+                if (rigidbody.linearVelocityX < moveData.startMove.maxSpeed) return;
+                rigidbody.AddForceX(-moveData.move.breakForce);
+                return;
+            }
             GUIstr = "Move";
             if (!debug_canMoveX) return;
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);

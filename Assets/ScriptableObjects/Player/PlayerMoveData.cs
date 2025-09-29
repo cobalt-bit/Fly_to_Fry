@@ -7,7 +7,7 @@ namespace ScriptableDatas
     public class PlayerMoveData : ScriptableObject
     {
         public Sprite foodTexture;
-        [Serializable] public struct MoveStruct { public float force, maxSpeed; }
+        [Serializable] public struct MoveStruct { public float force, maxSpeed, breakForce; }
         public MoveStruct move;
         [Serializable] public struct JumpStruct { public float timeToVertex, height, timeToSus, grideDownSpeed; }
         public JumpStruct jump;

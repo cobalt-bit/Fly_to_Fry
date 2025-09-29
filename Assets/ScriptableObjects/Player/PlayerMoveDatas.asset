@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodTexture: {fileID: 21300000, guid: 3f454141cedb0f944adab943f8224697, type: 3}
   move:
-    force: 12
-    maxSpeed: 1e+9
+    force: 8
+    maxSpeed: 25
   jump:
     timeToVertex: 0.4
     height: 4.5
