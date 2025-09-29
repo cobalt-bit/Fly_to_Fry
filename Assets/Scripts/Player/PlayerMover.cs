@@ -57,6 +57,7 @@ namespace Player
             if (!isPionterDown && !isInputbuttonDown)
             {
                 if (rigidbody.linearVelocityX < moveData.startMove.maxSpeed) return;
+                if (jumper.isJumping) return;
                 rigidbody.AddForceX(-moveData.move.breakForce);
                 return;
             }
