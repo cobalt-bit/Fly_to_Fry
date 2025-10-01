@@ -8,6 +8,7 @@ public class PlaceByMovement : MonoBehaviour
     [Min(0)] public float interval;
     [SerializeField] float aheadOffset;
     [SerializeField] float behindOffset;
+    [SerializeField] Transform offsetTarget;
     [SerializeField] float positionY;
     [SerializeField] float offsetX;
 
@@ -35,7 +36,7 @@ public class PlaceByMovement : MonoBehaviour
             currentPlacedObject = Instantiate(placedObject);
             useObjects.Add(currentPlacedObject);
 
-            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset + offsetX, positionY);
+            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset + offsetTarget.position.x, offsetTarget.position.y);
             previosPlacePositionX += interval;
             moveDistance -= interval;
         }

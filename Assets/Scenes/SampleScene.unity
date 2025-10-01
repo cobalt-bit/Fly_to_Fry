@@ -134,7 +134,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &113196403
 MonoBehaviour:
@@ -153,6 +153,7 @@ MonoBehaviour:
   interval: 20
   aheadOffset: 30
   behindOffset: 20
+  offsetTarget: {fileID: 1637760918}
   positionY: -4
   offsetX: 0
 --- !u!4 &113196404
@@ -198,8 +199,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3672990831478955514, guid: 0daf067f731ed124da9e5f4d8d568671, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6553324c6b792624393693ebc7741623, type: 3}
-  m_Resource: {fileID: 8300000, guid: 6553324c6b792624393693ebc7741623, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -314,6 +315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playList:
   - {fileID: 11400000, guid: eb4c67c9d0bede742bb39b3da49d9411, type: 2}
+--- !u!4 &186033054 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2718004170253753391, guid: cc30e2b7a71b30e4f85ba286456d318e, type: 3}
+  m_PrefabInstance: {fileID: 7679451097741009944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &619394801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +572,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &688103389
 MonoBehaviour:
@@ -800,7 +806,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1205836506
 MonoBehaviour:
@@ -819,6 +825,7 @@ MonoBehaviour:
   interval: 25
   aheadOffset: 50
   behindOffset: 40
+  offsetTarget: {fileID: 186033054}
   positionY: 0.43
   offsetX: 3.5
 --- !u!4 &1205836507
@@ -1048,6 +1055,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &1637760918 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
+  m_PrefabInstance: {fileID: 1864625203302863192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1857359148
 GameObject:
   m_ObjectHideFlags: 0
