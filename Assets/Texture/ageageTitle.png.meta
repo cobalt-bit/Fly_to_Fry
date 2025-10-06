@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 5622453162eb5184b959a6995b4439b4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3910257039850229615
+    second: ageageTitle_0
+  - first:
+      213: 3499439910395693346
+    second: ageageTitle_1
+  - first:
+      213: -2022428223385819591
+    second: ageageTitle_2
+  - first:
+      213: 8640678058682004910
+    second: ageageTitle_3
+  - first:
+      213: 391406488066076917
+    second: ageageTitle_4
+  - first:
+      213: 7128995930447796608
+    second: ageageTitle_5
+  - first:
+      213: 1782190174786000176
+    second: ageageTitle_6
+  - first:
+      213: 1582204691244236510
+    second: ageageTitle_7
+  - first:
+      213: 7643961999864261684
+    second: ageageTitle_8
+  - first:
+      213: 5787903012233020317
+    second: ageageTitle_9
+  - first:
+      213: -4824208662570103892
+    second: ageageTitle_10
+  - first:
+      213: 1420027610149824586
+    second: ageageTitle_11
+  - first:
+      213: 4171015667074185982
+    second: ageageTitle_12
+  - first:
+      213: 3293672309038238922
+    second: ageageTitle_13
+  - first:
+      213: 235963258543461381
+    second: ageageTitle_14
+  - first:
+      213: -150572483276410955
+    second: ageageTitle_15
+  - first:
+      213: 5911435529488624664
+    second: ageageTitle_16
+  - first:
+      213: 5656970974447716449
+    second: ageageTitle_17
+  - first:
+      213: 3158172178069281289
+    second: ageageTitle_18
+  - first:
+      213: -5158986464581544468
+    second: ageageTitle_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ageageTitle_0
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 2376
+        width: 825
+        height: 1286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 190b14f80f9fbb9c0800000000000000
+      internalID: -3910257039850229615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_1
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 2111
+        width: 418
+        height: 775
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229c5f3ce02809030800000000000000
+      internalID: 3499439910395693346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_2
+      rect:
+        serializedVersion: 2
+        x: 1777
+        y: 1921
+        width: 614
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9362d510f34eee3e0800000000000000
+      internalID: -2022428223385819591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_3
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 2411
+        width: 497
+        height: 422
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5b0420aead9e770800000000000000
+      internalID: 8640678058682004910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_4
+      rect:
+        serializedVersion: 2
+        x: 2722
+        y: 1895
+        width: 364
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f036fb802e8e6500800000000000000
+      internalID: 391406488066076917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_5
+      rect:
+        serializedVersion: 2
+        x: 2937
+        y: 2409
+        width: 107
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 089db8717084fe260800000000000000
+      internalID: 7128995930447796608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_6
+      rect:
+        serializedVersion: 2
+        x: 3041
+        y: 2444
+        width: 105
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0359f42858c9bb810800000000000000
+      internalID: 1782190174786000176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_7
+      rect:
+        serializedVersion: 2
+        x: 3241
+        y: 1972
+        width: 272
+        height: 603
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edeb197a8ce15f510800000000000000
+      internalID: 1582204691244236510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_8
+      rect:
+        serializedVersion: 2
+        x: 3548
+        y: 2337
+        width: 345
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c6e7e70fec41a60800000000000000
+      internalID: 7643961999864261684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_9
+      rect:
+        serializedVersion: 2
+        x: 4032
+        y: 2053
+        width: 267
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d93009ebf13c25050800000000000000
+      internalID: 5787903012233020317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_10
+      rect:
+        serializedVersion: 2
+        x: 2480
+        y: 1857
+        width: 264
+        height: 456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab8529f7c7fc0db0800000000000000
+      internalID: -4824208662570103892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_11
+      rect:
+        serializedVersion: 2
+        x: 3494
+        y: 1931
+        width: 447
+        height: 389
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a482a3a7693f4b310800000000000000
+      internalID: 1420027610149824586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_12
+      rect:
+        serializedVersion: 2
+        x: 4258
+        y: 1867
+        width: 425
+        height: 539
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efabb8476ac62e930800000000000000
+      internalID: 4171015667074185982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_13
+      rect:
+        serializedVersion: 2
+        x: 4644
+        y: 2271
+        width: 105
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: accc3c2b38975bd20800000000000000
+      internalID: 3293672309038238922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_14
+      rect:
+        serializedVersion: 2
+        x: 4746
+        y: 2235
+        width: 105
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504d68d555f464300800000000000000
+      internalID: 235963258543461381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_15
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1477
+        width: 603
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf6c5dcf1f09edf0800000000000000
+      internalID: -150572483276410955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_16
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1435
+        width: 776
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ceacf3b43a90250800000000000000
+      internalID: 5911435529488624664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_17
+      rect:
+        serializedVersion: 2
+        x: 2710
+        y: 872
+        width: 2642
+        height: 974
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 168c6ac1129918e40800000000000000
+      internalID: 5656970974447716449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_18
+      rect:
+        serializedVersion: 2
+        x: 5402
+        y: 1720
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90a575dfcd414db20800000000000000
+      internalID: 3158172178069281289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ageageTitle_19
+      rect:
+        serializedVersion: 2
+        x: 4204
+        y: 749
+        width: 531
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce59199d4299768b0800000000000000
+      internalID: -5158986464581544468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ageageTitle_0: -3910257039850229615
+      ageageTitle_1: 3499439910395693346
+      ageageTitle_10: -4824208662570103892
+      ageageTitle_11: 1420027610149824586
+      ageageTitle_12: 4171015667074185982
+      ageageTitle_13: 3293672309038238922
+      ageageTitle_14: 235963258543461381
+      ageageTitle_15: -150572483276410955
+      ageageTitle_16: 5911435529488624664
+      ageageTitle_17: 5656970974447716449
+      ageageTitle_18: 3158172178069281289
+      ageageTitle_19: -5158986464581544468
+      ageageTitle_2: -2022428223385819591
+      ageageTitle_3: 8640678058682004910
+      ageageTitle_4: 391406488066076917
+      ageageTitle_5: 7128995930447796608
+      ageageTitle_6: 1782190174786000176
+      ageageTitle_7: 1582204691244236510
+      ageageTitle_8: 7643961999864261684
+      ageageTitle_9: 5787903012233020317
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

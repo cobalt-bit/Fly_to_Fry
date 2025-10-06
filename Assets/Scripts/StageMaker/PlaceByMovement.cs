@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlaceByMovement : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     public GameObject placedObject;
     [Min(0)] public float interval;
     [SerializeField] float aheadOffset;
@@ -20,6 +20,14 @@ public class PlaceByMovement : MonoBehaviour
     void Start()
     {
         previosPlacePositionX -= aheadOffset;
+
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject obj in objects)
+        {
+            if (!obj.activeInHierarchy) continue;
+            target = obj.transform;
+            break;
+        }
     }
 
     void place()

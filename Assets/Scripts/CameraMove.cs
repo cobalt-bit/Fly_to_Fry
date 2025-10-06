@@ -9,7 +9,16 @@ public class CameraMove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (target == null) throw new System.NullReferenceException("Camera Move:target");
+        if (target == null)
+        {
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject obj in objects)
+            {
+                if (!obj.activeInHierarchy) continue;
+                target = obj.transform;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame

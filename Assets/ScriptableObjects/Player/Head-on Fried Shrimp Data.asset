@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee22fa520669b4e4c97fd6e15df4cc7b, type: 3}
-  m_Name: PlayerMoveDatas
+  m_Name: Head-on Fried Shrimp Data
   m_EditorClassIdentifier: 
-  foodTexture: {fileID: 21300000, guid: 3f454141cedb0f944adab943f8224697, type: 3}
   move:
     force: 10
     maxSpeed: 100
@@ -21,8 +20,7 @@ MonoBehaviour:
     timeToVertex: 0.4
     height: 4.5
     timeToSus: 1
-    grideDownSpeed: 0.8
+    grideDownSpeed: 0.2
   startMove:
     maxSpeed: 1.2
     force: 0.2
-  mass: 1

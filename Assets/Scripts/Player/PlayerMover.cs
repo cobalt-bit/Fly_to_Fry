@@ -47,7 +47,7 @@ namespace Player
             mover = new AddForce(moveData.move.force, rigidbody);
             jumper = new JumpAnimator(moveData.jump, transform, rigidbody, baseY);
 
-            rigidbody.mass = moveData.mass;
+            //rigidbody.mass = moveData.mass;
         }
 
         void Move()
@@ -146,7 +146,6 @@ namespace Player
             float originalGravity = rigidbody.gravityScale;
             rigidbody.gravityScale = 0;
             await Jump();
-
             await Sustain();
             rigidbody.gravityScale = originalGravity;
             isJumping = false;
