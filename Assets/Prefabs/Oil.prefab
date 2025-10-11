@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampingX: 0.1
-  dampingY: 6
+  dampingY: 8
 --- !u!1 &7992957006643713095
 GameObject:
   m_ObjectHideFlags: 0

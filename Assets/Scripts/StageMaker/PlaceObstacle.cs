@@ -1,17 +1,30 @@
 using UnityEngine;
 
-public class PlaceObstacle : MonoBehaviour
+namespace Obstacles
 {
-    [SerializeField] GameObject[] obstacles;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlaceObstacle : MonoBehaviour
     {
-        
+        [SerializeField] GameObject[] obstacles;
+        [SerializeField] SpacesData data;
+        private ScriptableDatas.PlayerMoveData playerMoveData;
+
+        private float timer = 0;
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            timer += Time.deltaTime;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public class SpacesData
     {
-        
+        public float diffcultySpeed, resetInterval;
     }
 }

@@ -10,9 +10,9 @@ namespace Player
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] float baseY;
-        [SerializeField] PlayerMoveData moveData;
+        public PlayerMoveData moveData;
         [SerializeField] PlayerInput input;
-        [SerializeField] IsLandingManeger landingManeger;
+        public IsLandingManeger landingManeger;
         [SerializeField] bool debug_canMoveX = true;
         new Rigidbody2D rigidbody;
         AddForce mover;

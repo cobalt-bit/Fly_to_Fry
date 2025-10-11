@@ -20,14 +20,7 @@ public class PlaceByMovement : MonoBehaviour
     void Start()
     {
         previosPlacePositionX -= aheadOffset;
-
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject obj in objects)
-        {
-            if (!obj.activeInHierarchy) continue;
-            target = obj.transform;
-            break;
-        }
+        target = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player.GetComponent<Transform>();
     }
 
     void place()
