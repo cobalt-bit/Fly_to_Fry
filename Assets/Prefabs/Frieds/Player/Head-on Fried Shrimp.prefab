@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63960c6b20e64f3449e56ee663c37ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseY: -2.5
   moveData: {fileID: 11400000, guid: 16fac4beb6e3d3a4fbe24bf045bbf626, type: 2}
+  baseY: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}
   input: {fileID: 0}
   landingManeger: {fileID: 4780806858826350234}
   debug_canMoveX: 1

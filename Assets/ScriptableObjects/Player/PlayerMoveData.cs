@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ScriptableDatas
 {
-    [CreateAssetMenu(fileName = "PlayerMoveData", menuName = "Scriptable Objects/PlayerMoveData")]
+    [CreateAssetMenu(fileName = "PlayerMoveData", menuName = "Scriptable Objects/Player/Move")]
     public class PlayerMoveData : ScriptableObject
     {
         [Serializable] public struct MoveStruct { public float force, maxSpeed, breakForce; }

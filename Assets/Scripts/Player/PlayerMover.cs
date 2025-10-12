@@ -9,8 +9,8 @@ namespace Player
 {
     public class PlayerMover : MonoBehaviour
     {
-        [SerializeField] float baseY;
         public PlayerMoveData moveData;
+        [SerializeField] PlayerBaseYDataScript baseY;
         [SerializeField] PlayerInput input;
         public IsLandingManeger landingManeger;
         [SerializeField] bool debug_canMoveX = true;
@@ -45,7 +45,7 @@ namespace Player
             if (landingManeger == null) throw new System.NullReferenceException(gameObject.name + "IsLandingManeger");
 
             mover = new AddForce(moveData.move.force, rigidbody);
-            jumper = new JumpAnimator(moveData.jump, transform, rigidbody, baseY);
+            jumper = new JumpAnimator(moveData.jump, transform, rigidbody, baseY.surfaceHeight);
 
             //rigidbody.mass = moveData.mass;
         }
