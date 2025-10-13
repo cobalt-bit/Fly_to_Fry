@@ -693,6 +693,9 @@ MonoBehaviour:
   obstacles:
   - {fileID: 5487910350340639810, guid: 566ebfa9cc2cc9641a0f36bb2a6efa56, type: 3}
   - {fileID: 5487910350340639810, guid: 566ebfa9cc2cc9641a0f36bb2a6efa56, type: 3}
+  coolTime_range:
+    min: 1
+    max: 7
   baseY: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}
 --- !u!4 &1146612335
 Transform:

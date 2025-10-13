@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Obstacles
     {
         [SerializeField] GameObject[] obstacles;
         [SerializeField] SpacesData data;
+        [Serializable] struct MinToMax{ public float min, max; }
+        [SerializeField] MinToMax coolTime_range;
         [SerializeField] ScriptableDatas.PlayerBaseYDataScript baseY;
         private IsLandingManeger playerLanding;
         private ScriptableDatas.PlayerMoveData playerMoveData;
@@ -23,7 +26,7 @@ namespace Obstacles
         void ResetForNext()
         {
             timer = 0;
-            nextPlaceTime = UnityEngine.Random.Range(1f, 3f);
+            nextPlaceTime = UnityEngine.Random.Range(coolTime_range.min, coolTime_range.max);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,7 +38,6 @@ namespace Obstacles
             //playerMoveData = player.GetComponent<Player.PlayerMover>().moveData;
             playerTransform = player.transform;
             playerRigidbody = player.GetComponent<Rigidbody2D>();
-            if (playerLanding == null) throw new System.NullReferenceException("playerLanding");
             ResetForNext();
         }
 
@@ -44,12 +46,17 @@ namespace Obstacles
             if (isWaiting) return;
             isWaiting = true;
             Debug.Log("Call Place");
-            //await UniTask.WaitUntil(() => playerLanding.isLanding);
+            await UniTask.WaitUntil(() => playerLanding.isLanding);
             await UniTask.NextFrame();
-            GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-            float positionX = playerTransform.position.x + 20;    //Don't change!
-            obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
-            useObjects.Add(obstacle);
+            uint obstacleNumber = (uint)UnityEngine.Random.Range(1, 5);
+            float basePositionX = playerTransform.position.x + 20;
+            for (uint i = 0; i < obstacleNumber; ++i)
+            {
+                GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
+                float positionX = i * UnityEngine.Random.Range(2.5f, 3) + basePositionX;    //Don't change!
+                obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+                useObjects.Add(obstacle);
+            }
             isWaiting = false;
             ResetForNext();
         }
