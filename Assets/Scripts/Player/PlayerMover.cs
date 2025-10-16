@@ -4,6 +4,7 @@ using ScriptableDatas;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 namespace Player
 {
@@ -15,6 +16,8 @@ namespace Player
         public IsLandingManeger landingManeger;
         [SerializeField] bool debug_canMoveX = true;
         new Rigidbody2D rigidbody;
+        EventTrigger trigger;
+        EventTrigger.Entry[] entryEvents = new EventTrigger.Entry[2];
         AddForce mover;
         JumpAnimator jumper;
         //BoolDictionary canMove = new BoolDictionary();
@@ -23,10 +26,50 @@ namespace Player
 
         string GUIstr = "";
 
+        private void Awake()
+        {
+            getEventTrigger();
+            setEntryEvents();
+            getPlayerInput();
+        }
+
+        void getEventTrigger()
+        {
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+            foreach (GameObject obj in objs)
+            {
+                if (obj.TryGetComponent(out trigger)) break;
+            }
+            Debug.Log(trigger);
+            return;
+        }
+
+        void setEntryEvents()
+        {
+            for (int i = 0; i < entryEvents.Length; ++i) entryEvents[i] = new();
+            entryEvents[0].eventID = EventTriggerType.PointerDown;
+            entryEvents[1].eventID = EventTriggerType.PointerUp;
+            entryEvents[0].callback.AddListener((_) => MovebyPointer());
+            entryEvents[1].callback.AddListener((_) => JumpbyPointer());
+        }
+
+        void getPlayerInput()
+        {
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+            foreach(GameObject obj in objs)
+            {
+                if (obj.TryGetComponent(out input)) break;
+            }
+            return;
+        }
+
         private void OnEnable()
         {
             input.actions["Move"].started += MovebyInputAction;
             input.actions["Move"].canceled += JumpbyInputAction;
+
+            trigger.triggers.Add(entryEvents[0]);
+            trigger.triggers.Add(entryEvents[1]);
         }
 
         private void OnDisable()
@@ -34,6 +77,9 @@ namespace Player
             if (input == null) return;
             input.actions["Move"].started -= MovebyInputAction;
             input.actions["Move"].canceled -= JumpbyInputAction;
+
+            foreach(EventTrigger.Entry event_ in entryEvents)
+                trigger.triggers.Remove(event_);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
