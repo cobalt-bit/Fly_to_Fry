@@ -12,7 +12,7 @@ namespace Player
     {
         public PlayerMoveData moveData;
         [SerializeField] PlayerBaseYDataScript baseY;
-        [SerializeField] PlayerInput input;
+        PlayerInput input;
         public IsLandingManeger landingManeger;
         [SerializeField] bool debug_canMoveX = true;
         new Rigidbody2D rigidbody;
