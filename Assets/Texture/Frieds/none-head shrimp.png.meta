@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e56f32cab7e04c2478721886c0f0537a
+guid: 3ed3bb7ee42be0c43a5d1b1dac59a0a4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6727207868258378971
-    second: ajifry noFry_0
+      213: 7198147308038023523
+    second: none-head shrimp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,14 +96,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: none-head shrimp_0
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 2307
+        width: 4747
+        height: 1392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3696a88d6d4f4e360800000000000000
+      internalID: 7198147308038023523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1575e06cb7c770342a2bfb800ea0e33b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -113,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ajifry noFry_0: -6727207868258378971
+      none-head shrimp_0: 7198147308038023523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

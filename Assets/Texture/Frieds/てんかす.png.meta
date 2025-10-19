@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 916b005682a87bd42b966114bfbd5b18
+guid: 77c8aaf8f0d40b14d9967cd033ef8b87
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8457237130478321280
-    second: ajifry_0
+      213: -7860093812459186171
+    second: "\u3066\u3093\u304B\u3059_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 2048
+  spritePixelsToUnits: 944
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,14 +96,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\u3066\u3093\u304B\u3059_0"
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 245
+        width: 544
+        height: 509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508df1772565be290800000000000000
+      internalID: -7860093812459186171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c1167061d64219d42b96681d3fb0f18d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -113,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ajifry_0: 8457237130478321280
+      "\u3066\u3093\u304B\u3059_0": -7860093812459186171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
