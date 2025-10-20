@@ -24,6 +24,8 @@ namespace Player
         bool isPionterDown = false;
         bool isInputbuttonDown = false;
 
+        public event Action moveEvent, jumpEvent;
+
         string GUIstr = "";
 
         private void Awake()
@@ -109,6 +111,7 @@ namespace Player
             }
             GUIstr = "Move";
             if (!debug_canMoveX) return;
+            moveEvent?.Invoke();
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
             //mover.AddSpeed(Vector2.right);
         }
@@ -116,6 +119,7 @@ namespace Player
         void Jump()
         {
             if (!landingManeger.isLanding) return;
+            jumpEvent?.Invoke();
             jumper.CallJump();
             GUIstr = "Jump";
         }
