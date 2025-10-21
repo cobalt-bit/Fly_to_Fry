@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 707683934833687767}
   - component: {fileID: 498562508935282486}
   - component: {fileID: 4843061695604030406}
-  - component: {fileID: 616116133851164660}
+  - component: {fileID: 680496099649812865}
+  - component: {fileID: 9017992488562693544}
   m_Layer: 6
   m_Name: ajifry
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 2.803875
+  m_Mass: 1.9272074
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 3
@@ -116,8 +117,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &616116133851164660
-BoxCollider2D:
+--- !u!60 &680496099649812865
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,6 +160,30 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 1
-  m_Size: {x: 2.1230469, y: 1.3206844}
-  m_EdgeRadius: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0397539, y: -0.5815573}
+      - {x: 1.0397539, y: 0.4737463}
+      - {x: 0.7919921, y: 0.6520391}
+      - {x: 0.21043873, y: 0.63753605}
+      - {x: -0.96240234, y: 0.122104704}
+      - {x: -1.0615234, y: -0.1274773}
+      - {x: 0.34619138, y: -0.62957186}
+      - {x: 0.8738909, y: -0.63546276}
+  m_UseDelaunayMesh: 0
+--- !u!114 &9017992488562693544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487910350340639810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790f2b4ca1729774fadff284944cbd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+    m_PersistentCalls:
+      m_Calls: []

@@ -37,12 +37,11 @@ namespace Player
 
         void getEventTrigger()
         {
-            GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("Controller");
             foreach (GameObject obj in objs)
             {
                 if (obj.TryGetComponent(out trigger)) break;
             }
-            Debug.Log(trigger);
             return;
         }
 
@@ -57,7 +56,7 @@ namespace Player
 
         void getPlayerInput()
         {
-            GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("Controller");
             foreach(GameObject obj in objs)
             {
                 if (obj.TryGetComponent(out input)) break;

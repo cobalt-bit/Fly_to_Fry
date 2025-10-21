@@ -47,7 +47,6 @@ namespace Obstacles
         {
             if (isWaiting) return;
             isWaiting = true;
-            Debug.Log("Call Place");
             await UniTask.WaitUntil(() => playerLanding.isLanding);
             await UniTask.NextFrame();
             uint obstacleNumber = (uint)UnityEngine.Random.Range(1, 5);
