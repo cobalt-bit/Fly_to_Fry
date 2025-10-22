@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneReplayer : MonoBehaviour
 {
@@ -12,5 +14,16 @@ public class SceneReplayer : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ReloadThisScene()
+    {
+        Scene thisScene = SceneManager.GetActiveScene();
+        Reload(thisScene);
+    }
+
+    private async UniTask Reload(Scene scene)
+    {
+        await SceneManager.LoadSceneAsync(scene.buildIndex, LoadSceneMode.Single);
     }
 }

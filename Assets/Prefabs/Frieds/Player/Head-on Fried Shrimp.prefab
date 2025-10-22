@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chara
       objectReference: {fileID: 0}
+    - target: {fileID: 2748596576822772525, guid: d49f1d9a0cf17664c91b62d90d928258, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3460244717517089728, guid: d49f1d9a0cf17664c91b62d90d928258, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.189
