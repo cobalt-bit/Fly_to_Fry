@@ -30,9 +30,12 @@ public class LoopMusicPlayer : MonoBehaviour
 
     public async UniTask Play()
     {
-        audioSource.clip = selected.audio_begin;
-        audioSource.Play();
-        await Task.Delay(selected.beginLength_millise);
+        if (selected.audio_begin)
+        {
+            audioSource.clip = selected.audio_begin;
+            audioSource.Play();
+            await Task.Delay(selected.beginLength_millise);
+        }
         audioSource.clip = selected.audio_loop;
         audioSource.Play();
         audioSource.loop = true;

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed927eb716550524ba02a69610ed93da, type: 3}
-  m_Name: LoopMusicDataTest
+  m_Name: BitflyData
   m_EditorClassIdentifier: 
-  audio_begin: {fileID: 8300000, guid: c44cd24119da6fa418073dcf69e08243, type: 3}
-  audio_loop: {fileID: 8300000, guid: 6553324c6b792624393693ebc7741623, type: 3}
-  beginLength_millise: 1231
+  audio_begin: {fileID: 0}
+  audio_loop: {fileID: 8300000, guid: 8f89812db319fe743a8b428806ab088f, type: 3}
+  beginLength_millise: 0
