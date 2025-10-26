@@ -32,5 +32,7 @@ public class GameOverManeger : MonoBehaviour
         playerObject.GetComponent<Player.PlayerMover>().enabled = false;
 
         GameObject.Find("ObstaclePlacer").GetComponent<Obstacles.PlaceObstacle>().enabled = false;
+
+        GameObject.Find("ScoreManeger").GetComponent<ScoreCalculator>().stop = true;
     }
 }
