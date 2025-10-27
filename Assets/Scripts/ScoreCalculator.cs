@@ -1,18 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScoreCalculator : MonoBehaviour
 {
     [SerializeField] TMP_Text OutPut;
     [SerializeField] ScriptableDatas.CmPerUnitScript cmPerUnitData;
     Transform playerTransform;
-    [NonSerialized] public float score = 0;
+    public float score { get; protected set; } = 0;
     float immediatelyPrecedingPositionX;
-    private Queue<float> scoreEffectEvents = new(0);
     public bool stop { protected get; set; } = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,14 +24,14 @@ public class ScoreCalculator : MonoBehaviour
     void Update()
     {
         if (stop) return;
-        score = playerTransform.position.x - immediatelyPrecedingPositionX;
-        score *= cmPerUnitData.unitPer_cm;
+        score += (playerTransform.position.x - immediatelyPrecedingPositionX) * cmPerUnitData.cmPerUnit;
+        immediatelyPrecedingPositionX = playerTransform.position.x;
 
-        OutPut.text = string.Format("SCORE:{0:0.0}", score);
+        OutPut.text = string.Format("SCORE : {0:0.0}", score);
     }
 
-    void calculateScore()
+    public void calculateScore(float add)
     {
-
+        score += add;
     }
 }

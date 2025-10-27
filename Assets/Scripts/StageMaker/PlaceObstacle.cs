@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Obstacles
@@ -14,16 +13,16 @@ namespace Obstacles
         [SerializeField] MinToMax coolTime_range;
         [SerializeField] MinToMax intervalRange;
         [SerializeField] ScriptableDatas.PlayerBaseYDataScript baseY;
+        [SerializeField] ScoreCalculator scoreCalculator;
         private IsLandingManeger playerLanding;
-        private ScriptableDatas.PlayerMoveData playerMoveData;
         private Transform playerTransform;
         private Rigidbody2D playerRigidbody;
         private bool isWaiting = false;
         private List<GameObject> useObjects = new List<GameObject>();
-        private float latestPosition;
 
         private float timer = 0;
         private float nextPlaceTime;
+        private bool isFirst = true;
 
         void ResetForNext()
         {
@@ -47,21 +46,25 @@ namespace Obstacles
         {
             if (isWaiting) return;
             isWaiting = true;
-            await UniTask.WaitUntil(() => playerLanding.isLanding);
+            //await UniTask.WaitUntil(() => playerLanding.isLanding);
             await UniTask.NextFrame();
-            uint obstacleNumber = (uint)UnityEngine.Random.Range(1, 5);
+            uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
+            if (isFirst) obstacleNumber = 1;
             float basePositionX = playerTransform.position.x + 20;
             float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
             for (uint i = 0; i < obstacleNumber; ++i)
             {
                 float positionX = i * interval + basePositionX;     //Don't change!
-                if (positionX <= latestPosition || positionX - latestPosition < 5) break;
                 GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-                latestPosition = positionX;
                 obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+                obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                 useObjects.Add(obstacle);
+
+                if (isFirst) continue;
+                if (UnityEngine.Random.Range(0f, 1f) < 0.01f) obstacle.AddComponent<LuckyEvent.FriedLuckyJumper>();
             }
             isWaiting = false;
+            isFirst = false;
             ResetForNext();
         }
 

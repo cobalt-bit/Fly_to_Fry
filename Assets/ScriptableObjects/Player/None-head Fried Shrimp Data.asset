@@ -15,11 +15,11 @@ MonoBehaviour:
   move:
     force: 6.5
     maxSpeed: 100
-    breakForce: 3
+    breakForce: 4
   jump:
     timeToVertex: 0.28
     height: 3
-    timeToSus: 0.5
+    timeToSus: 0.4
     grideDownSpeed: 0.1
   startMove:
     maxSpeed: 0.1

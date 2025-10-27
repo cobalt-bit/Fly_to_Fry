@@ -1,12 +1,11 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 
 namespace Player
 {
     public class PlayerSearcher : MonoBehaviour
     {
-        public GameObject player;
+        public GameObject player { get; private set; }
 
         private void Awake()
         {
