@@ -194,8 +194,12 @@ namespace Player
             distance = basePositionY - targetTransform.position.y + height;
             float originalGravity = rigidbody.gravityScale;
             rigidbody.gravityScale = 0;
-            await Jump();
-            await Sustain();
+            try
+            {
+                await Jump();
+                await Sustain();
+            } catch (OperationCanceledException) { }
+
             rigidbody.gravityScale = originalGravity;
             isJumping = false;
         }
