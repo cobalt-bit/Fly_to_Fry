@@ -158,10 +158,12 @@ namespace Player
             Jump();
         }
 
+#if UNITY_EDITOR
         private void OnGUI()
         {
             GUILayout.Label("Player Move Event:" + GUIstr);
         }
+#endif
     }
 
     [System.Serializable]
