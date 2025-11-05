@@ -45,10 +45,10 @@ namespace Obstacles
         {
             if (isWaiting) return;
             isWaiting = true;
-            //await UniTask.WaitUntil(() => playerLanding.isLanding);
+            await UniTask.WaitUntil(() => playerLanding.isLanding);
             await UniTask.NextFrame();
             uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
-            //if (isFirst) obstacleNumber = 1;
+            if (isFirst) obstacleNumber = 1;
             float basePositionX = playerTransform.position.x + 20;
             float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
             for (uint i = 0; i < obstacleNumber; ++i)
@@ -59,7 +59,6 @@ namespace Obstacles
                 obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                 useObjects.Add(obstacle);
 
-                if (isFirst) break;
                 if (UnityEngine.Random.Range(0f, 1f) < 0.01f) obstacle.AddComponent<LuckyEvent.FriedLuckyJumper>();
             }
             isWaiting = false;
