@@ -59,12 +59,19 @@ namespace Obstacles
                 obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                 useObjects.Add(obstacle);
 
-                if (UnityEngine.Random.Range(0f, 1f) < 0.01f) obstacle.AddComponent<LuckyEvent.FriedLuckyJumper>();
+                AttachLacky(obstacle, isFirst);
             }
             isWaiting = false;
             isFirst = false;
             ResetForNext();
         }
+
+        void AttachLacky(GameObject obstacle, bool isFirst = false)
+        {
+            if (isFirst) return;
+            if (UnityEngine.Random.Range(0f, 1f) < 0.01f) obstacle.AddComponent<LuckyEvent.FriedLuckyJumper>();
+        }
+
 
         void Replace()
         {
