@@ -7,7 +7,7 @@ public class ScoreCalculator : MonoBehaviour
     [SerializeField] ScriptableDatas.CmPerUnitScript cmPerUnitData;
     Transform playerTransform;
     public float score { get; protected set; } = 0;
-    float immediatelyPrecedingPositionX;
+    float precedingPositionX;
     public bool stop { protected get; set; } = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,18 +15,26 @@ public class ScoreCalculator : MonoBehaviour
     {
         GameObject playerobj = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player;
         playerTransform = playerobj.transform;
-        immediatelyPrecedingPositionX = playerTransform.position.x;
-
-        if (OutPut == null) throw new System.NullReferenceException("Score Display Text");
+        precedingPositionX = playerTransform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (stop) return;
-        score += (playerTransform.position.x - immediatelyPrecedingPositionX) * cmPerUnitData.cmPerUnit;
-        immediatelyPrecedingPositionX = playerTransform.position.x;
+        score += (playerTransform.position.x - precedingPositionX) * cmPerUnitData.cmPerUnit;
+        precedingPositionX = playerTransform.position.x;
 
+        ShowScore();
+    }
+
+    void ShowScore()
+    {
+        if (OutPut == null)
+        {
+            if (OutPut == null) throw new System.NullReferenceException("Score Display Text");
+            return;
+        }
         OutPut.text = string.Format("SCORE : {0:0.0}", score);
     }
 

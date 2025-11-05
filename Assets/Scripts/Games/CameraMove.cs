@@ -11,13 +11,7 @@ public class CameraMove : MonoBehaviour
     {
         if (target == null)
         {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject obj in objects)
-            {
-                if (!obj.activeInHierarchy) continue;
-                target = obj.transform;
-                break;
-            }
+            target = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player.transform;
         }
     }
 
