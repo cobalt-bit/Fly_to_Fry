@@ -20,7 +20,6 @@ namespace Player
         EventTrigger.Entry[] entryEvents = new EventTrigger.Entry[2];
         AddForce mover;
         JumpAnimator jumper;
-        //BoolDictionary canMove = new BoolDictionary();
         bool isPionterDown = false;
         bool isInputbuttonDown = false;
 
@@ -93,8 +92,6 @@ namespace Player
 
             mover = new AddForce(moveData.move.force, rigidbody);
             jumper = new JumpAnimator(moveData.jump, transform, rigidbody, baseY.surfaceHeight);
-
-            //rigidbody.mass = moveData.mass;
         }
 
         void Move()
@@ -112,7 +109,6 @@ namespace Player
             if (!debug_canMoveX) return;
             moveEvent?.Invoke();
             mover.AddForceToMaxSpeed(Vector2.right, moveData.move.maxSpeed);
-            //mover.AddSpeed(Vector2.right);
         }
 
         void Jump()
@@ -137,13 +133,11 @@ namespace Player
 
         public void MovebyPointer()
         {
-            //canMove.Set("isPointerDown", true);
             isPionterDown = true;
         }
 
         public void JumpbyPointer()
         {
-            //canMove.Set("isPointerDown", false);
             isPionterDown = false;
             Jump();
         }
@@ -202,29 +196,29 @@ namespace Player
                 await Sustain();
             } catch (OperationCanceledException) { }
 
-            rigidbody.gravityScale = originalGravity;
+            if (rigidbody != null)
+                rigidbody.gravityScale = originalGravity;
             isJumping = false;
         }
 
         private async UniTask Jump()
         {
-            //rigidbody.linearVelocityY = MathF.Sqrt(2 * distance * rigidbody.gravityScale);
             float a = -distance / timeToVertex / timeToVertex;
             for (float timer = 0; timer < timeToVertex; timer += Time.deltaTime)
             {
                 float x = timer - timeToVertex;
                 float moveDistance = a * x * x + distance;
+                if (rigidbody == null) return;
                 rigidbody.linearVelocityY = 2 * a * x;
                 await UniTask.NextFrame();
-                //rigidbody.position = new Vector2(rigidbody.position.x, moveDistance + fromPosition);
             }
-            //rigidbody.position = new Vector2(rigidbody.position.x, basePositionY + height);
         }
 
         private async UniTask Sustain()
         {
             for (float timer = 0; timer < timeToSus; timer += Time.deltaTime)
             {
+                if (rigidbody == null) return;
                 rigidbody.linearVelocityY = -grideDownSpeed;
                 await UniTask.NextFrame();
             }

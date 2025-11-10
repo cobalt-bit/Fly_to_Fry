@@ -36,6 +36,7 @@ public class LoopMusicPlayer : MonoBehaviour
             audioSource.Play();
             await Task.Delay(selected.beginLength_millise);
         }
+        if (audioSource == null) return;
         audioSource.clip = selected.audio_loop;
         audioSource.Play();
         audioSource.loop = true;
