@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: None-head Fried Shrimp Data
   m_EditorClassIdentifier: 
   move:
-    force: 7
-    maxSpeed: 30
+    force: 5
+    maxSpeed: 25
     breakForce: 5
   jump:
     timeToVertex: 0.28

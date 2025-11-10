@@ -16,17 +16,14 @@ namespace Obstacles
         private IsLandingManeger playerLanding;
         private Transform playerTransform;
         private Rigidbody2D playerRigidbody;
-        private bool isWaiting = false;
         private List<GameObject> useObjects = new List<GameObject>();
 
-        private float timer = 0;
-        private float nextPlaceTime;
+        private int nextPlaceTime;
         private bool isFirst = true;
 
         void ResetForNext()
         {
-            timer = 0;
-            nextPlaceTime = UnityEngine.Random.Range(coolTime_range.min, coolTime_range.max);
+            nextPlaceTime = UnityEngine.Random.Range((int)(coolTime_range.min * 1000), (int)(coolTime_range.max * 1000));
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,32 +35,60 @@ namespace Obstacles
             //playerMoveData = player.GetComponent<Player.PlayerMover>().moveData;
             playerTransform = player.transform;
             playerRigidbody = player.GetComponent<Rigidbody2D>();
-            ResetForNext();
+
+            Place();
         }
 
         async UniTask Place()
         {
-            if (isWaiting) return;
-            isWaiting = true;
-            await UniTask.WaitUntil(() => playerLanding.isLanding);
-            await UniTask.NextFrame();
-            uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
-            if (isFirst) obstacleNumber = 1;
-            float basePositionX = playerTransform.position.x + 20;
-            float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
-            for (uint i = 0; i < obstacleNumber; ++i)
-            {
-                float positionX = i * interval + basePositionX;     //Don't change!
-                GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-                obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
-                obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
-                useObjects.Add(obstacle);
+            //if (isWaiting) return;
+            //isWaiting = true;
+            //await UniTask.WaitUntil(() => playerLanding.isLanding);
+            //await UniTask.NextFrame();
+            //uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
+            //if (isFirst) obstacleNumber = 1;
+            //float basePositionX = playerTransform.position.x + 20;
+            //float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
+            //for (uint i = 0; i < obstacleNumber; ++i)
+            //{
+            //    float positionX = i * interval + basePositionX;     //Don't change!
+            //    GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
+            //    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+            //    obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
+            //    useObjects.Add(obstacle);
 
-                AttachLucky(obstacle, isFirst);
+            //    //AttachLucky(obstacle, isFirst);
+            //}
+            //isWaiting = false;
+            //isFirst = false;
+            //ResetForNext();
+
+            await UniTask.WaitForEndOfFrame();
+            while (true)
+            {
+                ResetForNext();
+                await UniTask.WaitUntil(() => useObjects.Count == 0);
+                await UniTask.WaitUntil(() => playerLanding.isLanding);
+                await UniTask.Delay(nextPlaceTime);
+                await UniTask.WaitForFixedUpdate();
+                uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
+                if (isFirst) obstacleNumber = 1;
+                UniTask.ReturnToMainThread();
+                float basePositionX = playerTransform.position.x + 20;
+                float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
+                for (uint i = 0; i < obstacleNumber; ++i)
+                {
+                    float positionX = i * interval + basePositionX;     //Don't change!
+                    GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
+                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+                    obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
+                    obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
+                    useObjects.Add(obstacle);
+
+                    //AttachLucky(obstacle, isFirst);
+                }
+                isFirst = false;
             }
-            isWaiting = false;
-            isFirst = false;
-            ResetForNext();
         }
 
         void AttachLucky(GameObject obstacle, bool isFirst = false)
@@ -75,12 +100,11 @@ namespace Obstacles
 
         void Replace()
         {
-            // コレクション操作を行うからLinqが使えなかった
+            // コレクション操作を行うからLinqが使えなかった;;
             for (int i = 0; i < useObjects.Count; i++)
             {
-                if (playerTransform.position.x - useObjects[i].transform.position.x < 10) continue;
+                if (playerTransform.position.x - useObjects[i].transform.position.x < 8) continue;
                 Destroy(useObjects[i]);
-                //unuseObjects.Enqueue(useObjects[i]);
                 useObjects.RemoveAt(i);
             }
         }
@@ -89,9 +113,6 @@ namespace Obstacles
         void Update()
         {
             Replace();
-            timer += Time.deltaTime;
-            if (timer < nextPlaceTime) return;
-            Place();
         }
     }
 }
