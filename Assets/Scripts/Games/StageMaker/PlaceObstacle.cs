@@ -41,28 +41,6 @@ namespace Obstacles
 
         async UniTask Place()
         {
-            //if (isWaiting) return;
-            //isWaiting = true;
-            //await UniTask.WaitUntil(() => playerLanding.isLanding);
-            //await UniTask.NextFrame();
-            //uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
-            //if (isFirst) obstacleNumber = 1;
-            //float basePositionX = playerTransform.position.x + 20;
-            //float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
-            //for (uint i = 0; i < obstacleNumber; ++i)
-            //{
-            //    float positionX = i * interval + basePositionX;     //Don't change!
-            //    GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-            //    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
-            //    obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
-            //    useObjects.Add(obstacle);
-
-            //    //AttachLucky(obstacle, isFirst);
-            //}
-            //isWaiting = false;
-            //isFirst = false;
-            //ResetForNext();
-
             await UniTask.WaitForEndOfFrame();
             while (true)
             {
