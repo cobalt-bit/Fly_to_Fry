@@ -1153,7 +1153,7 @@ MonoBehaviour:
   - {fileID: 5487910350340639810, guid: 566ebfa9cc2cc9641a0f36bb2a6efa56, type: 3}
   coolTime_range:
     min: 0.5
-    max: 6
+    max: 3
   intervalRange:
     min: 2
     max: 4
@@ -2249,11 +2249,11 @@ PrefabInstance:
       objectReference: {fileID: 1498036921}
     - target: {fileID: 2359078693226596119, guid: d195145a26d177b4c812282c6402f02f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07872918
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2359078693226596119, guid: d195145a26d177b4c812282c6402f02f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03146553
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2359078693226596119, guid: d195145a26d177b4c812282c6402f02f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2285,6 +2285,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2359078693226596119, guid: d195145a26d177b4c812282c6402f02f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359078693226596119, guid: d195145a26d177b4c812282c6402f02f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3946607623282961073, guid: d195145a26d177b4c812282c6402f02f, type: 3}
