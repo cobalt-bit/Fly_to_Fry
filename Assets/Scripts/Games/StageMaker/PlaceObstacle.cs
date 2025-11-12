@@ -11,6 +11,7 @@ namespace Obstacles
         [Serializable] struct MinToMax{ public float min, max; }
         [SerializeField] MinToMax coolTime_range;
         [SerializeField] MinToMax intervalRange;
+        [SerializeField] uint incrementStepByScore;
         [SerializeField] ScriptableDatas.PlayerBaseYDataScript baseY;
         [SerializeField] ScoreCalculator scoreCalculator;
         private IsLandingManeger playerLanding;
@@ -49,7 +50,7 @@ namespace Obstacles
                 await UniTask.WaitUntil(() => playerLanding.isLanding);
                 await UniTask.Delay(nextPlaceTime);
                 await UniTask.WaitForFixedUpdate();
-                uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / 50 + 3);
+                uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
                 if (isFirst) obstacleNumber = 1;
                 UniTask.ReturnToMainThread();
                 float basePositionX = playerTransform.position.x + 20;
@@ -58,7 +59,7 @@ namespace Obstacles
                 {
                     float positionX = i * interval + basePositionX;     //Don't change!
                     GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight + 1);
                     obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                     obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
                     useObjects.Add(obstacle);

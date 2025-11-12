@@ -245,7 +245,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3672990831478955514, guid: 0daf067f731ed124da9e5f4d8d568671, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 981f9d2b84f7dc144882b3f4ae98b078, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   intervalRange:
     min: 2
     max: 4
+  incrementStepByScore: 30
   baseY: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}
   scoreCalculator: {fileID: 8387829}
 --- !u!4 &1146612335
