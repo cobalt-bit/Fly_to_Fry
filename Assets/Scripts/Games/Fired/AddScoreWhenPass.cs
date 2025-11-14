@@ -1,34 +1,30 @@
 using UnityEngine;
 
-namespace FriedObject
+public class AddScoreWhenPass : MonoBehaviour
 {
-    public class AddScoreWhenPass : MonoBehaviour
+    Transform target;
+    ScoreCalculator scoreCalc;
+    [SerializeField] float offset;
+    [SerializeField] float addScore;
+
+    public void Initialize(Transform target, ScoreCalculator calculator)
     {
-        Transform target;
-        ScoreCalculator scoreCalc;
-        float offset;
-        float addScore;
+        this.target = target;
+        this.scoreCalc = calculator;
+    }
 
-        public void Initialize(Transform target, ScoreCalculator calculator, float add, float offset = 0)
-        {
-            this.target = target;
-            this.scoreCalc = calculator;
-            this.offset = offset;
-            this.addScore = add;
-        }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        if (target == null) throw new System.NullReferenceException("Target Transform");
+        if (scoreCalc == null) throw new System.NullReferenceException("Score Calculator");
+    }
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-            if (!target) throw new System.NullReferenceException("Target Transform");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            if (target.position.x < transform.position.x + offset) return;
-            scoreCalc.calculateScore(addScore);
-            Destroy(this);
-        }
+    // Update is called once per frame
+    void Update()
+    {
+        if (target.position.x < transform.position.x + offset) return;
+        scoreCalc.calculateScore(addScore);
+        Destroy(this);
     }
 }

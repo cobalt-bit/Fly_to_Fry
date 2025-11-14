@@ -65,8 +65,7 @@ namespace Obstacles
                     obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
                     obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                     obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
-                    FriedObject.AddScoreWhenPass addScore = obstacle.AddComponent<FriedObject.AddScoreWhenPass>();
-                    addScore.Initialize(playerTransform, scoreCalculator, 2, 3);
+                    obstacle.GetComponent<AddScoreWhenPass>()?.Initialize(playerTransform, scoreCalculator);
 #if UNITY_EDITOR
                     obstacle.AddComponent<FriedSpeedDebuger>();
 #endif

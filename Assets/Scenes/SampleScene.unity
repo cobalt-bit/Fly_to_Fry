@@ -214,8 +214,6 @@ MonoBehaviour:
   aheadOffset: 25
   behindOffset: 20
   offsetTarget: {fileID: 1637760918}
-  positionY: -4
-  offsetX: 0
 --- !u!1 &182437144
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,11 +243,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3672990831478955514, guid: 0daf067f731ed124da9e5f4d8d568671, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 981f9d2b84f7dc144882b3f4ae98b078, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1165,6 +1163,7 @@ MonoBehaviour:
   incrementStepByScore: 30
   baseY: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}
   scoreCalculator: {fileID: 8387829}
+  oilPlacer: {fileID: 113196405}
 --- !u!4 &1146612335
 Transform:
   m_ObjectHideFlags: 0
@@ -1211,11 +1210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placedObject: {fileID: 8177634348157611811, guid: cc30e2b7a71b30e4f85ba286456d318e, type: 3}
   interval: 25
-  aheadOffset: 50
-  behindOffset: 40
+  aheadOffset: 30
+  behindOffset: 20
   offsetTarget: {fileID: 186033054}
-  positionY: 0.43
-  offsetX: 3.5
 --- !u!4 &1205836507
 Transform:
   m_ObjectHideFlags: 0

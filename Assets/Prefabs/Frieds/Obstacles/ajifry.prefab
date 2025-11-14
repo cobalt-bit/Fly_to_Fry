@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4843061695604030406}
   - component: {fileID: 680496099649812865}
   - component: {fileID: 9017992488562693544}
+  - component: {fileID: -7500084220027873973}
   m_Layer: 6
   m_Name: ajifry
   m_TagString: Untagged
@@ -184,3 +185,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790f2b4ca1729774fadff284944cbd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7500084220027873973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487910350340639810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed254ad95a064694aab0845a93e00bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 1.5
+  addScore: 2
