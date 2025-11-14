@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move:
     force: 6
-    maxSpeed: 28
+    maxSpeed: 26
     breakForce: 5
   jump:
     timeToVertex: 0.25

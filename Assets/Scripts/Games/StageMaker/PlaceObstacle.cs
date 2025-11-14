@@ -14,6 +14,7 @@ namespace Obstacles
         [SerializeField] uint incrementStepByScore;
         [SerializeField] ScriptableDatas.PlayerBaseYDataScript baseY;
         [SerializeField] ScoreCalculator scoreCalculator;
+        [SerializeField] OilPlacer oilPlacer;
         private IsLandingManeger playerLanding;
         private Transform playerTransform;
         private Rigidbody2D playerRigidbody;
@@ -36,8 +37,9 @@ namespace Obstacles
             //playerMoveData = player.GetComponent<Player.PlayerMover>().moveData;
             playerTransform = player.transform;
             playerRigidbody = player.GetComponent<Rigidbody2D>();
+            if (!oilPlacer) throw new System.NullReferenceException("oilPlacer");
 
-            Place();
+            Place().Forget();
         }
 
         async UniTask Place()
@@ -46,22 +48,28 @@ namespace Obstacles
             while (true)
             {
                 ResetForNext();
-                await UniTask.WaitUntil(() => useObjects.Count == 0);
-                await UniTask.WaitUntil(() => playerLanding.isLanding);
+                await UniTask.WaitUntil(() => useObjects.Count == 0 && playerLanding.isLanding);
                 await UniTask.Delay(nextPlaceTime);
-                await UniTask.WaitForFixedUpdate();
                 uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
                 if (isFirst) obstacleNumber = 1;
-                UniTask.ReturnToMainThread();
-                float basePositionX = playerTransform.position.x + 20;
+                await UniTask.SwitchToMainThread();
+                float basePositionX = playerTransform.position.x + 15;
                 float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
+
+
+
                 for (uint i = 0; i < obstacleNumber; ++i)
                 {
                     float positionX = i * interval + basePositionX;     //Don't change!
                     GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
-                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight + 1);
+                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
                     obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                     obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
+                    FriedObject.AddScoreWhenPass addScore = obstacle.AddComponent<FriedObject.AddScoreWhenPass>();
+                    addScore.Initialize(playerTransform, scoreCalculator, 2, 3);
+#if UNITY_EDITOR
+                    obstacle.AddComponent<FriedSpeedDebuger>();
+#endif
                     useObjects.Add(obstacle);
 
                     //AttachLucky(obstacle, isFirst);

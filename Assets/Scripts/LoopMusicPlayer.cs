@@ -1,8 +1,5 @@
 using Cysharp.Threading.Tasks;
 using ScriptableDatas;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class LoopMusicPlayer : MonoBehaviour
@@ -11,7 +8,7 @@ public class LoopMusicPlayer : MonoBehaviour
     AudioSource audioSource;
     LoopMusicScriptable selected;
 
-    void MusicSelect() => selected = playList[UnityEngine.Random.Range(0, playList.Length)];
+    void MusicSelect() => selected = playList[Random.Range(0, playList.Length)];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +16,7 @@ public class LoopMusicPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null) throw new System.NullReferenceException("AudioSource");
         MusicSelect();
-        if (audioSource.playOnAwake) Play();
+        if (audioSource.playOnAwake) Play().Forget();
     }
 
     // Update is called once per frame
@@ -30,11 +27,11 @@ public class LoopMusicPlayer : MonoBehaviour
 
     public async UniTask Play()
     {
-        if (selected.audio_begin)
+        if (selected.audio_begin != null)
         {
             audioSource.clip = selected.audio_begin;
             audioSource.Play();
-            await Task.Delay(selected.beginLength_millise);
+            await UniTask.WaitWhile(() => audioSource.isPlaying);
         }
         if (audioSource == null) return;
         audioSource.clip = selected.audio_loop;

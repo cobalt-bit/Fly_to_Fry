@@ -10,6 +10,8 @@ public class ScoreCalculator : MonoBehaviour
     float precedingPositionX;
     public bool stop { protected get; set; } = false;
 
+    readonly object calculate_obj = new object();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,6 +42,9 @@ public class ScoreCalculator : MonoBehaviour
 
     public void calculateScore(float add)
     {
-        score += add;
+        lock (calculate_obj)
+        {
+            score += add;
+        }
     }
 }

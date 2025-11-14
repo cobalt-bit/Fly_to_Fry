@@ -7,6 +7,5 @@ namespace ScriptableDatas
     public class LoopMusicScriptable : ScriptableObject
     {
         public AudioClip audio_begin, audio_loop;
-        public int beginLength_millise;
     }
 }

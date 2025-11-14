@@ -1,0 +1,46 @@
+using System;
+using UnityEngine;
+
+public class OilPlacer : PlaceByMovement
+{
+    float needPositionX;
+    readonly object keyNeedPosotion = new();
+    public void SetNeedPosistion(float position)
+    {
+        lock (keyNeedPosotion)
+        {
+            
+        }
+    }
+
+
+    //// Start is called once before the first execution of Update after the MonoBehaviour is created
+    //void Start()
+    //{
+
+    //}
+
+    // Update is called once per frame
+    void Update()
+    {
+        lock (this)
+        {
+            needPositionX = MathF.Max(target.position.x, needPositionX);
+        }
+        place();
+        Replace();
+    }
+
+    public override void place()
+    {
+        float moveDistance = needPositionX - previosPlacePositionX;
+        while (moveDistance >= interval)
+        {
+            GameObject currentPlacedObject = Instantiate(placedObject);
+            AddObjectPool(currentPlacedObject);
+            currentPlacedObject.transform.position = new Vector2(previosPlacePositionX + interval + aheadOffset + offsetTarget.position.x, offsetTarget.position.y);
+            previosPlacePositionX += interval;
+            moveDistance -= interval;
+        }
+    }
+}
