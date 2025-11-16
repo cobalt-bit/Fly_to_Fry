@@ -16,7 +16,7 @@ public class LoopMusicPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null) throw new System.NullReferenceException("AudioSource");
         MusicSelect();
-        if (audioSource.playOnAwake) Play().Forget();
+        Play().Forget();
     }
 
     // Update is called once per frame
@@ -25,10 +25,11 @@ public class LoopMusicPlayer : MonoBehaviour
 
     }
 
-    public async UniTask Play()
+    async UniTask Play()
     {
         if (selected.audio_begin != null)
         {
+            audioSource.loop = false;
             audioSource.clip = selected.audio_begin;
             audioSource.Play();
             await UniTask.WaitWhile(() => audioSource.isPlaying);
@@ -37,5 +38,6 @@ public class LoopMusicPlayer : MonoBehaviour
         audioSource.clip = selected.audio_loop;
         audioSource.Play();
         audioSource.loop = true;
+        if (!Application.isPlaying) audioSource.Stop();
     }
 }
