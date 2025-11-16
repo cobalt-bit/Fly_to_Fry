@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 352da097fda297f48a859b8b3302e8a1, type: 3}
   m_Name: PlayerBaseYData
   m_EditorClassIdentifier: 
-  surfaceHeight: -2.5
+  surfaceHeight: -3

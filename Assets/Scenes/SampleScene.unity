@@ -2140,6 +2140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oil
       objectReference: {fileID: 0}
+    - target: {fileID: 6879293312251340705, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.6666667
+      objectReference: {fileID: 0}
     - target: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2167,6 +2171,10 @@ PrefabInstance:
     - target: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2241,10 +2249,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8342466153816609154, guid: 50e0fc2140f568b4ab2a9f0b31acf1e5, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 1498036921}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
