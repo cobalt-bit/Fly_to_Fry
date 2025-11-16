@@ -243,11 +243,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3672990831478955514, guid: 0daf067f731ed124da9e5f4d8d568671, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 981f9d2b84f7dc144882b3f4ae98b078, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1161,6 +1161,7 @@ MonoBehaviour:
     min: 2.2
     max: 4
   incrementStepByScore: 30
+  intervalFromPlayer: 18
   baseY: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}
   scoreCalculator: {fileID: 8387829}
   oilPlacer: {fileID: 113196405}
@@ -2139,10 +2140,6 @@ PrefabInstance:
     - target: {fileID: 2293924796751546821, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
       propertyPath: m_Name
       value: Oil
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879293312251340705, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 8176755215974163885, guid: 9546fc149ba767a4584e883f44ebaa32, type: 3}
       propertyPath: m_LocalPosition.x

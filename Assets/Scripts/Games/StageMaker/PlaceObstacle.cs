@@ -12,6 +12,7 @@ namespace Obstacles
         [SerializeField] MinToMax coolTime_range;
         [SerializeField] MinToMax intervalRange;
         [SerializeField] uint incrementStepByScore;
+        [SerializeField] float intervalFromPlayer;
         [SerializeField] ScriptableDatas.PlayerBaseYDataScript baseY;
         [SerializeField] ScoreCalculator scoreCalculator;
         [SerializeField] OilPlacer oilPlacer;
@@ -53,10 +54,9 @@ namespace Obstacles
                 uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
                 if (isFirst) obstacleNumber = 1;
                 await UniTask.SwitchToMainThread();
-                float basePositionX = playerTransform.position.x + 15;
+                float basePositionX = playerTransform.position.x + intervalFromPlayer;
                 float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
-
-
+                oilPlacer.SetNeedPosistion(basePositionX + interval * obstacleNumber);
 
                 for (uint i = 0; i < obstacleNumber; ++i)
                 {

@@ -4,15 +4,7 @@ using UnityEngine;
 public class OilPlacer : PlaceByMovement
 {
     float needPositionX;
-    readonly object keyNeedPosotion = new();
-    public void SetNeedPosistion(float position)
-    {
-        lock (keyNeedPosotion)
-        {
-            
-        }
-    }
-
+    public void SetNeedPosistion(float position) => needPositionX = position;
 
     //// Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -23,10 +15,7 @@ public class OilPlacer : PlaceByMovement
     // Update is called once per frame
     void Update()
     {
-        lock (this)
-        {
-            needPositionX = MathF.Max(target.position.x, needPositionX);
-        }
+        needPositionX = MathF.Max(target.position.x, needPositionX);
         place();
         Replace();
     }

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class FriedSpeedDebuger : MonoBehaviour
@@ -5,20 +6,34 @@ public class FriedSpeedDebuger : MonoBehaviour
     [SerializeField] 
     new Rigidbody2D rigidbody;
     Transform player;
+    bool touchedOil = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (!TryGetComponent(out rigidbody)) throw new System.NullReferenceException("fried rigid");
         player = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player.transform;
+        Search().Forget();
+    }
+
+    async UniTask Search()
+    {
+        await UniTask.NextFrame();
+        await UniTask.WaitForFixedUpdate();
+        if (touchedOil) return;
+        Debug.Log("Fried position:" + transform.position.x);
+        UnityEditor.EditorApplication.isPaused = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.position.x > transform.position.x) return;
-        if (rigidbody.linearVelocity.magnitude <= 4) return;
-        Debug.Log("Fried position:" + transform.position.x);
-        UnityEditor.EditorApplication.isPaused = true;
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Oil")) return;
+        touchedOil = true;
     }
 }
