@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Score;
 
 public class GameOverManeger : MonoBehaviour
 {

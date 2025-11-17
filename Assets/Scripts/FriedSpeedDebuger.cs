@@ -22,7 +22,9 @@ public class FriedSpeedDebuger : MonoBehaviour
         await UniTask.WaitForFixedUpdate();
         if (touchedOil) return;
         Debug.Log("Fried position:" + transform.position.x);
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPaused = true;
+#endif
     }
 
     // Update is called once per frame
