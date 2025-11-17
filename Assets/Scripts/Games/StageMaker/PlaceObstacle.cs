@@ -27,6 +27,7 @@ namespace Obstacles
         void ResetForNext()
         {
             nextPlaceTime = UnityEngine.Random.Range((int)(coolTime_range.min * 1000), (int)(coolTime_range.max * 1000));
+            if (isFirst) nextPlaceTime = (int)MathF.Max(nextPlaceTime, 3000);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
