@@ -1,4 +1,5 @@
 using UnityEngine;
+using Score;
 
 public class AddScoreWhenPass : MonoBehaviour
 {

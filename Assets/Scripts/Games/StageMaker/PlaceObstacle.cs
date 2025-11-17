@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Score;
 
 namespace Obstacles
 {
@@ -58,11 +59,12 @@ namespace Obstacles
                 float basePositionX = playerTransform.position.x + intervalFromPlayer;
                 float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
                 oilPlacer.SetNeedPosistion(basePositionX + interval * obstacleNumber);
+                int obstacleType = UnityEngine.Random.Range(0, obstacles.Length);
 
                 for (uint i = 0; i < obstacleNumber; ++i)
                 {
                     float positionX = i * interval + basePositionX;     //Don't change!
-                    GameObject obstacle = Instantiate(obstacles[UnityEngine.Random.Range(0, obstacles.Length - 1)]);
+                    GameObject obstacle = Instantiate(obstacles[obstacleType]);
                     obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
                     obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
                     obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
