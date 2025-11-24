@@ -21,6 +21,8 @@ namespace Score
                 await UnityServices.InitializeAsync();
                 if (AuthenticationService.Instance.IsSignedIn) return;
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                Debug.Log("PlayerID: " + AuthenticationService.Instance.PlayerId);
+                Debug.Log("AccessToken: " + (AuthenticationService.Instance.AccessToken != null).ToString());
             }
             catch (System.Exception)
             {
@@ -49,10 +51,7 @@ namespace Score
 
         public async void AddScoreOnBoard(double data)
         {
-<<<<<<< HEAD
             if (AuthenticationService.Instance.AccessToken == null) return;
-=======
->>>>>>> 2cc95ffd0dc0fa71c3ed6d6a90fc79ba5d090b38
             var result = await LeaderboardsService.Instance.AddPlayerScoreAsync(LEADERBOARD_ID, data);
             Debug.Log(JsonConvert.SerializeObject(result));
             shower.Show();
@@ -60,10 +59,7 @@ namespace Score
 
         public async UniTask<LeaderboardScoresPage> GetScore(GetScoresOptions options)
         {
-<<<<<<< HEAD
             if (AuthenticationService.Instance.AccessToken == null) return null;
-=======
->>>>>>> 2cc95ffd0dc0fa71c3ed6d6a90fc79ba5d090b38
             try
             {
                 var response = await LeaderboardsService.Instance.GetScoresAsync(LEADERBOARD_ID, options);

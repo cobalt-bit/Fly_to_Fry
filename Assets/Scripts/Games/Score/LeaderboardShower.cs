@@ -1,8 +1,6 @@
 using TMPro;
 using Unity.Services.Leaderboards;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 
 namespace Score
 {
@@ -22,7 +20,6 @@ namespace Score
 
         public async void Show()
         {
-<<<<<<< HEAD
             try
             {
                 text.text = "Score Board\n";
@@ -38,14 +35,13 @@ namespace Score
             {
 
                 throw;
-=======
-            text.text = "Score Board\n";
-            var scoreRespons = await leaderboard.GetScore(new GetScoresOptions { Offset = 0, Limit = ShowCount });
-            for(int i = 0; i < ShowCount && i < scoreRespons.Results.Count; i++)
-            {
-                if (i != 0) text.text += '\n';
-                text.text += string.Format("{0:}st:{1:0.0}", i + 1, scoreRespons.Results[i].Score);
->>>>>>> 2cc95ffd0dc0fa71c3ed6d6a90fc79ba5d090b38
+                text.text = "Score Board\n";
+                var scoreRespons = await leaderboard.GetScore(new GetScoresOptions { Offset = 0, Limit = ShowCount });
+                for (int i = 0; i < ShowCount && i < scoreRespons.Results.Count; i++)
+                {
+                    if (i != 0) text.text += '\n';
+                    text.text += string.Format("{0:}st:{1:0.0}", i + 1, scoreRespons.Results[i].Score);
+                }
             }
         }
     }
