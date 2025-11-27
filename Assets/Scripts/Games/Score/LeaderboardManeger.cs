@@ -10,7 +10,7 @@ namespace Score
 {
     public class LeaderboardManeger : MonoBehaviour
     {
-        const string LEADERBOARD_ID = "Best_Score_leaderboard";
+        const string LEADERBOARD_ID = "Best_Score_Leaderboard";
         [SerializeField] ScoreCalculator score;
         [SerializeField] LeaderboardShower shower;
 
