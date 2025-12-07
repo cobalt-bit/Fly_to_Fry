@@ -32,7 +32,7 @@ public class LoopMusicPlayer : MonoBehaviour
             audioSource.loop = false;
             audioSource.clip = selected.audio_begin;
             audioSource.Play();
-            await UniTask.WaitWhile(() => audioSource.isPlaying);
+            await UniTask.WaitWhile(() => audioSource != null ? audioSource.isPlaying : false);
         }
         if (audioSource == null) return;
         audioSource.clip = selected.audio_loop;

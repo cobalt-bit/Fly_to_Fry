@@ -22,26 +22,19 @@ namespace Score
         {
             try
             {
-                text.text = "Score Board\n";
+                text.SetText("");
                 var scoreRespons = await leaderboard.GetScore(new GetScoresOptions { Offset = 0, Limit = ShowCount });
                 if (scoreRespons == null) return;
                 for (int i = 0; i < ShowCount && i < scoreRespons.Results.Count; i++)
                 {
-                    if (i != 0) text.text += '\n';
-                    text.text += string.Format("{0:##}st. {1:0.0}", i + 1, scoreRespons.Results[i].Score);
+                    var scoredata = scoreRespons.Results[i];
+                    if (i != 0) text.text += "\n\n";
+                    text.text += string.Format("{0:##}st. {1}\n{2:0.0}", i + 1, scoreRespons.Results[i].PlayerName, scoreRespons.Results[i].Score);
                 }
             }
             catch (System.Exception)
             {
-
                 throw;
-                text.text = "Score Board\n";
-                var scoreRespons = await leaderboard.GetScore(new GetScoresOptions { Offset = 0, Limit = ShowCount });
-                for (int i = 0; i < ShowCount && i < scoreRespons.Results.Count; i++)
-                {
-                    if (i != 0) text.text += '\n';
-                    text.text += string.Format("{0:}st:{1:0.0}", i + 1, scoreRespons.Results[i].Score);
-                }
             }
         }
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Score;
+using System.Threading;
 
 namespace Obstacles
 {
@@ -25,6 +26,8 @@ namespace Obstacles
         private int nextPlaceTime;
         private bool isFirst = true;
 
+        private CancellationTokenSource CancellationTokenSource;
+
         void ResetForNext()
         {
             nextPlaceTime = UnityEngine.Random.Range((int)(coolTime_range.min * 1000), (int)(coolTime_range.max * 1000));
@@ -41,21 +44,23 @@ namespace Obstacles
             playerTransform = player.transform;
             playerRigidbody = player.GetComponent<Rigidbody2D>();
             if (!oilPlacer) throw new System.NullReferenceException("oilPlacer");
+            CancellationTokenSource = new CancellationTokenSource();
 
-            Place().Forget();
+            Place(CancellationTokenSource.Token).Forget();
         }
 
-        async UniTask Place()
+        async UniTask Place(CancellationToken cancellation = default)
         {
             await UniTask.WaitForEndOfFrame();
             while (true)
             {
                 ResetForNext();
-                await UniTask.WaitUntil(() => useObjects.Count == 0 && playerLanding.isLanding);
-                await UniTask.Delay(nextPlaceTime);
+                await UniTask.WaitUntil(() => useObjects.Count == 0 && playerLanding.isLanding, cancellationToken: cancellation);
+                await UniTask.Delay(nextPlaceTime, cancellationToken: cancellation);
                 uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
                 if (isFirst) obstacleNumber = 1;
-                await UniTask.SwitchToMainThread();
+                await UniTask.SwitchToMainThread(cancellation);
+                if (cancellation.IsCancellationRequested) break;
                 float basePositionX = playerTransform.position.x + intervalFromPlayer;
                 float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
                 oilPlacer.SetNeedPosistion(basePositionX + interval * obstacleNumber);
@@ -102,6 +107,11 @@ namespace Obstacles
         void Update()
         {
             Replace();
+        }
+
+        private void OnDestroy()
+        {
+            CancellationTokenSource.Cancel();
         }
     }
 }

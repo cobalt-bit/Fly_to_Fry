@@ -10,7 +10,7 @@ namespace Score
 {
     public class LeaderboardManeger : MonoBehaviour
     {
-        const string LEADERBOARD_ID = "Best_Score_Leaderboard";
+        const string LEADERBOARD_ID = "Best_Score_leaderboard";
         [SerializeField] ScoreCalculator score;
         [SerializeField] LeaderboardShower shower;
 
@@ -26,7 +26,6 @@ namespace Score
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
@@ -57,7 +56,7 @@ namespace Score
             shower.Show();
         }
 
-        public async UniTask<LeaderboardScoresPage> GetScore(GetScoresOptions options)
+        public async UniTask<LeaderboardScoresPage> GetScore(GetScoresOptions options = null)
         {
             if (AuthenticationService.Instance.AccessToken == null) return null;
             try
@@ -67,7 +66,6 @@ namespace Score
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
