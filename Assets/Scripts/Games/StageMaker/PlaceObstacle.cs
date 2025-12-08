@@ -111,7 +111,7 @@ namespace Obstacles
 
         private void OnDestroy()
         {
-            CancellationTokenSource.Cancel();
+            CancellationTokenSource?.Cancel();
         }
     }
 }
