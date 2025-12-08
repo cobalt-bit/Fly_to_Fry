@@ -17,10 +17,10 @@ public class PlaceByMovement : MonoBehaviour
     void Start()
     {
         previosPlacePositionX -= aheadOffset;
-        target = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player.GetComponent<Transform>();
+        target = GameObject.Find("PlayerSearcher").GetComponent<Player.PlayerSearcher>().player.transform;
     }
 
-    public virtual void place()
+    public virtual void Place()
     {
         float moveDistance = target.position.x - previosPlacePositionX;
         while (moveDistance >= interval)
@@ -49,7 +49,7 @@ public class PlaceByMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        place();
+        Place();
         Replace();
     }
 }

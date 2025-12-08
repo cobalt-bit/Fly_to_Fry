@@ -16,11 +16,11 @@ public class OilPlacer : PlaceByMovement
     void Update()
     {
         needPositionX = MathF.Max(target.position.x, needPositionX);
-        place();
+        Place();
         Replace();
     }
 
-    public override void place()
+    public override void Place()
     {
         float moveDistance = needPositionX - previosPlacePositionX;
         while (moveDistance >= interval)

@@ -5,7 +5,7 @@ namespace Player
 {
     public class PlayerSearcher : MonoBehaviour
     {
-        public GameObject player { get; private set; }
+        public GameObject player;
 
         private void Awake()
         {
