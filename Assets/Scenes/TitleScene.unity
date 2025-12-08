@@ -1067,7 +1067,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: HowToPlayScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &806672478
@@ -2508,6 +2508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197e788937952814182f60ed94d3e235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asyncLoadSceneNames: []
 --- !u!4 &1918302281
 Transform:
   m_ObjectHideFlags: 0

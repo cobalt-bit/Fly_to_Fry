@@ -52,7 +52,7 @@ namespace Score
         {
             if (AuthenticationService.Instance.AccessToken == null) return;
             var result = await LeaderboardsService.Instance.AddPlayerScoreAsync(LEADERBOARD_ID, data);
-            Debug.Log(JsonConvert.SerializeObject(result));
+            //Debug.Log(JsonConvert.SerializeObject(result));
             shower.Show();
         }
 
