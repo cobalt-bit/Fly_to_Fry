@@ -28,8 +28,8 @@ namespace Score
                 for (int i = 0; i < ShowCount && i < scoreRespons.Results.Count; i++)
                 {
                     var scoredata = scoreRespons.Results[i];
-                    if (i != 0) text.text += "\n\n";
-                    text.text += string.Format("{0:##}st. {1}\n{2:0.0}", i + 1, scoreRespons.Results[i].PlayerName, scoreRespons.Results[i].Score);
+                    if (i != 0) text.text += "\n";
+                    text.text += string.Format("{0:##}st. {1:0.0}", i + 1, scoreRespons.Results[i].Score);
                 }
             }
             catch (System.Exception)
