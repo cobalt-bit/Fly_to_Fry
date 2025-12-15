@@ -51,46 +51,45 @@ namespace Obstacles
 
         async UniTask Place(CancellationToken cancellation = default)
         {
-            await UniTask.WaitForEndOfFrame();
-            while (true)
+            try
             {
-                ResetForNext();
-                await UniTask.WaitUntil(() => useObjects.Count == 0 && playerLanding.isLanding, cancellationToken: cancellation);
-                await UniTask.Delay(nextPlaceTime, cancellationToken: cancellation);
-                uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
-                if (isFirst) obstacleNumber = 1;
-                await UniTask.SwitchToMainThread(cancellation);
-                if (cancellation.IsCancellationRequested) break;
-                float basePositionX = playerTransform.position.x + intervalFromPlayer;
-                float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
-                oilPlacer.SetNeedPosistion(basePositionX + interval * obstacleNumber);
-                int obstacleType = UnityEngine.Random.Range(0, obstacles.Length);
-
-                for (uint i = 0; i < obstacleNumber; ++i)
+                await UniTask.WaitForEndOfFrame();
+                while (true)
                 {
-                    float positionX = i * interval + basePositionX;     //Don't change!
-                    GameObject obstacle = Instantiate(obstacles[obstacleType]);
-                    obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
-                    obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
-                    obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
-                    obstacle.GetComponent<AddScoreWhenPass>()?.Initialize(playerTransform, scoreCalculator);
+                    ResetForNext();
+                    await UniTask.WaitUntil(() => useObjects.Count == 0 && playerLanding.isLanding, cancellationToken: cancellation);
+                    await UniTask.Delay(nextPlaceTime, cancellationToken: cancellation);
+                    uint obstacleNumber = (uint)UnityEngine.Random.Range(1, scoreCalculator.score / incrementStepByScore + 2);
+                    if (isFirst) obstacleNumber = 1;
+                    await UniTask.SwitchToMainThread(cancellation);
+                    float basePositionX = playerTransform.position.x + intervalFromPlayer;
+                    float interval = UnityEngine.Random.Range(intervalRange.min, intervalRange.max);
+                    oilPlacer.SetNeedPosistion(basePositionX + interval * obstacleNumber);
+                    int obstacleType = UnityEngine.Random.Range(0, obstacles.Length);
+
+                    for (uint i = 0; i < obstacleNumber; ++i)
+                    {
+                        float positionX = i * interval + basePositionX;     //Don't change!
+                        GameObject obstacle = Instantiate(obstacles[obstacleType]);
+                        obstacle.transform.position = new Vector2(positionX, baseY.surfaceHeight);
+                        obstacle.GetComponent<TouchedPlayerTrigger>().playerRigid = playerRigidbody;
+                        obstacle.GetComponent<Rigidbody2D>().linearVelocityY = 0;
+                        obstacle.GetComponent<AddScoreWhenPass>()?.Initialize(playerTransform, scoreCalculator);
 #if UNITY_EDITOR
-                    obstacle.AddComponent<FriedSpeedDebuger>();
+                        obstacle.AddComponent<FriedSpeedDebuger>();
 #endif
-                    useObjects.Add(obstacle);
-
-                    //AttachLucky(obstacle, isFirst);
+                        useObjects.Add(obstacle);
+                    }
+                    isFirst = false;
                 }
-                isFirst = false;
             }
-        }
+            catch (Exception)
+            {
 
-        void AttachLucky(GameObject obstacle, bool isFirst = false)
-        {
-            if (isFirst) return;
-            if (UnityEngine.Random.Range(0f, 1f) < 0.01f) obstacle.AddComponent<LuckyEvent.FriedLuckyJumper>();
-        }
+                throw;
+            }
 
+        }
 
         void Replace()
         {

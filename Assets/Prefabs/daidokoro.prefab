@@ -100,6 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120c6cf5ecee0ec4b9e07e269d828c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slipspeed: {x: 0, y: 0}
+  slipspeed: {x: 0.08, y: 0}
   offset: {x: 0, y: 0}
   playerBaseYData: {fileID: 11400000, guid: 18f1a40d3034bea4b9f519e979998740, type: 2}

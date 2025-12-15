@@ -39,7 +39,7 @@ namespace Score
                 if (OutPut == null) throw new System.NullReferenceException("Score Display Text");
                 return;
             }
-            OutPut.text = string.Format("SCORE : {0:0.0}", score);
+            OutPut.text = string.Format("{0:0.0}", score);
         }
 
         public void calculateScore(float add)
