@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
@@ -39,7 +40,7 @@ namespace Score
         // Update is called once per frame
         void Update()
         {
-        
+
         }
 
         public void AddScore()
@@ -53,7 +54,7 @@ namespace Score
             if (AuthenticationService.Instance.AccessToken == null) return;
             var result = await LeaderboardsService.Instance.AddPlayerScoreAsync(LEADERBOARD_ID, data);
             //Debug.Log(JsonConvert.SerializeObject(result));
-            shower.Show();
+            shower.Show().Forget();
         }
 
         public async UniTask<LeaderboardScoresPage> GetScore(GetScoresOptions options = null)
@@ -63,6 +64,34 @@ namespace Score
             {
                 var response = await LeaderboardsService.Instance.GetScoresAsync(LEADERBOARD_ID, options);
                 return response;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public async UniTask<string> GetPlayerName()
+        {
+            try
+            {
+                if (AuthenticationService.Instance.PlayerName != null) 
+                    return AuthenticationService.Instance.PlayerName;
+                return await AuthenticationService.Instance.GetPlayerNameAsync();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public async UniTask UpdatePlayerName(string playerName)
+        {
+            if (playerName.Contains(' ')) return;
+            if (playerName.Length > 50) return;
+            try
+            {
+                await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
             }
             catch (System.Exception)
             {
