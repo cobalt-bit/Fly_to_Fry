@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using TMPro;
+using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 
@@ -54,12 +55,12 @@ namespace Score
 
         async UniTask SetRanking()
         {
+            rank.SetText("順位\n");
+            username.SetText("名前\n");
+            score.SetText("最高スコア\n");
+
             try
             {
-                rank.SetText("");
-                username.SetText("");
-                score.SetText("");
-
                 var scoreRespons = await leaderboard.GetScore(new GetScoresOptions { Offset = 0, Limit = showCount });
                 if (scoreRespons == null) return;
                 for (int i = 0; i < showCount && i < scoreRespons.Results.Count; i++)
@@ -73,6 +74,8 @@ namespace Score
                     }
                     rank.text += scoredata.Rank + 1 + "st.";
                     username.text += scoredata.PlayerName;
+                    if (AuthenticationService.Instance.PlayerId == scoredata.PlayerId)
+                        username.text += " (You)";
                     score.text += string.Format("{0:0.0}", scoredata.Score);
                 }
             }
